@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QuAE9kQOctc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\FE\\LinkedLearn\\LinkedLearn.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\binh4\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512"
+  ],
+  "logs": []
+}

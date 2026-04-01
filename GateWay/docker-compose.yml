@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  gateway-api:
+    container_name: gateway-api
+    build:
+      context: .
+      dockerfile: GateWay/Dockerfile
+    ports:
+      - "5000:8080"
+    networks:
+      - my-shared-network
+
+networks:
+  my-shared-network:
+    external: true

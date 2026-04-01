@@ -1,0 +1,14 @@
+services:
+  user-api:
+    container_name: user-api
+    build:
+      context: .             # Dấu chấm này nghĩa là nó lấy toàn bộ folder BE
+      dockerfile: UserAPI/Dockerfile
+    ports:
+      - "8081:8080"
+    networks:
+      - my-shared-network
+
+networks:
+  my-shared-network:
+    external: true

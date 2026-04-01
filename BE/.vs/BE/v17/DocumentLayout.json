@@ -1,0 +1,406 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\models\\dto\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\models\\dto\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\models\\dto\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\models\\dto\\registerrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\userapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\userapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\services\\iservices\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\services\\iservices\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\repositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\repositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\repositories\\irepositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\repositories\\irepositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\repositories\\irepositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\repositories\\irepositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\repositories\\irepositories\\iuserrolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\repositories\\irepositories\\iuserrolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\repositories\\userrolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\repositories\\userrolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\models\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\models\\entities\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\models\\entities\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\models\\entities\\profile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\models\\entities\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\models\\entities\\userrole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\userapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\userapi.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\models\\entities\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\models\\entities\\users.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|c:\\users\\binh4\\source\\repos\\linkedlearn_project\\be\\userapi\\userapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{BFAF5D2E-6BC6-43AB-9DA5-9445A337F6AC}|UserAPI\\UserAPI.csproj|solutionrelative:userapi\\userapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "UserAPI\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\appsettings.Development.json",
+              "RelativeToolTip": "UserAPI\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-01T06:19:06.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginRequest.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\DTO\\LoginRequest.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Models\\DTO\\LoginRequest.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\DTO\\LoginRequest.cs",
+              "RelativeToolTip": "UserAPI\\Models\\DTO\\LoginRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T11:36:10.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\IRepositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Repositories\\IRepositories\\IUserRepository.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\IRepositories\\IUserRepository.cs",
+              "RelativeToolTip": "UserAPI\\Repositories\\IRepositories\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:36:11.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Program.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Program.cs",
+              "RelativeToolTip": "UserAPI\\Program.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAcwDsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T02:53:10.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Services\\IServices\\IUserService.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Services\\IServices\\IUserService.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Services\\IServices\\IUserService.cs",
+              "RelativeToolTip": "UserAPI\\Services\\IServices\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:42:35.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Services\\UserService.cs",
+              "RelativeToolTip": "UserAPI\\Services\\UserService.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAgwG0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:42:57.256Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "UserAPI\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:47:39.936Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "UserAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\appsettings.json",
+              "RelativeToolTip": "UserAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-31T02:49:29.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RegisterRequest.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\DTO\\RegisterRequest.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Models\\DTO\\RegisterRequest.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\DTO\\RegisterRequest.cs",
+              "RelativeToolTip": "UserAPI\\Models\\DTO\\RegisterRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T12:20:28.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Dockerfile",
+              "RelativeDocumentMoniker": "UserAPI\\Dockerfile",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Dockerfile",
+              "RelativeToolTip": "UserAPI\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-01T04:31:02.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "UserAPI\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Properties\\launchSettings.json",
+              "RelativeToolTip": "UserAPI\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwBYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-31T11:51:38.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserAPI.csproj",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\UserAPI.csproj",
+              "RelativeDocumentMoniker": "UserAPI\\UserAPI.csproj",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\UserAPI.csproj",
+              "RelativeToolTip": "UserAPI\\UserAPI.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-31T02:51:29.397Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IUserRoleRepository.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\IRepositories\\IUserRoleRepository.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Repositories\\IRepositories\\IUserRoleRepository.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\IRepositories\\IUserRoleRepository.cs",
+              "RelativeToolTip": "UserAPI\\Repositories\\IRepositories\\IUserRoleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T11:05:44.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RoleRepository.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\IRepositories\\RoleRepository.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Repositories\\IRepositories\\RoleRepository.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\IRepositories\\RoleRepository.cs",
+              "RelativeToolTip": "UserAPI\\Repositories\\IRepositories\\RoleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T11:07:38.991Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RoleRepository.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\RoleRepository.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Repositories\\RoleRepository.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\RoleRepository.cs",
+              "RelativeToolTip": "UserAPI\\Repositories\\RoleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T11:07:59.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UserRoleRepository.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\UserRoleRepository.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Repositories\\UserRoleRepository.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\UserRoleRepository.cs",
+              "RelativeToolTip": "UserAPI\\Repositories\\UserRoleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T11:06:18.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\Role.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Models\\Entities\\Role.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\Role.cs",
+              "RelativeToolTip": "UserAPI\\Models\\Entities\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:30:55.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Profile.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\Profile.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Models\\Entities\\Profile.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\Profile.cs",
+              "RelativeToolTip": "UserAPI\\Models\\Entities\\Profile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:27:17.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "UserAPI\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwCEAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:37:29.708Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UserRole.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\UserRole.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Models\\Entities\\UserRole.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\UserRole.cs",
+              "RelativeToolTip": "UserAPI\\Models\\Entities\\UserRole.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:27:34.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "UserAPI\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwDQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:29:27.37Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UserAPI.http",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\UserAPI.http",
+              "RelativeDocumentMoniker": "UserAPI\\UserAPI.http",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\UserAPI.http",
+              "RelativeToolTip": "UserAPI\\UserAPI.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-03-31T02:49:39.032Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Users.cs",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\Users.cs",
+              "RelativeDocumentMoniker": "UserAPI\\Models\\Entities\\Users.cs",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\Models\\Entities\\Users.cs",
+              "RelativeToolTip": "UserAPI\\Models\\Entities\\Users.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T06:26:51.667Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserAPI",
+              "DocumentMoniker": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\UserAPI.csproj",
+              "RelativeDocumentMoniker": "UserAPI\\UserAPI.csproj",
+              "ToolTip": "C:\\Users\\binh4\\source\\repos\\LinkedLearn_Project\\BE\\UserAPI\\UserAPI.csproj",
+              "RelativeToolTip": "UserAPI\\UserAPI.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-31T02:49:49.791Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

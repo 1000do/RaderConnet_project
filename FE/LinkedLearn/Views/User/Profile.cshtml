@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+    <div class="flex flex-col lg:flex-row gap-8">
+
+        <aside class="w-full lg:w-72 flex-shrink-0">
+            <div class="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 sticky top-24">
+                <nav class="flex flex-col gap-2">
+                    <a href="/User/Profile" class="flex items-center gap-4 px-4 py-3 rounded-2xl bg-primary-container/30 text-primary font-bold transition-all">
+                        <span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>person</span>
+                        <span>Profile</span>
+                    </a>
+                    <a href="/User/EditProfile" class="flex items-center gap-4 px-4 py-3 rounded-2xl text-slate-500 hover:bg-slate-50 transition-all">
+                        <span class="material-symbols-outlined">edit_square</span>
+                        <span>Edit Profile</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl text-slate-500 hover:bg-slate-50 transition-all">
+                        <span class="material-symbols-outlined">security</span>
+                        <span>Security</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-4 px-4 py-3 rounded-2xl text-slate-500 hover:bg-slate-50 transition-all">
+                        <span class="material-symbols-outlined">history</span>
+                        <span>Purchase History</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="flex-grow space-y-8">
+            <div class="mb-4">
+                <h1 class="text-3xl font-extrabold text-slate-800">My Profile</h1>
+                <p class="text-slate-500">View your learning progress and public profile details.</p>
+            </div>
+
+            <section class="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-8">
+                <div class="relative">
+                    <div class="w-32 h-32 rounded-[2rem] overflow-hidden ring-4 ring-slate-50 shadow-lg">
+                        <img class="w-full h-full object-cover" src="https://ui-avatars.com/api/?name=Alex+Thorne&background=006a62&color=fff" />
+                    </div>
+                </div>
+                <div class="flex-grow text-center md:text-left">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-slate-800">Alex Thorne</h2>
+                            <p class="text-primary font-medium">alex.thorne@atheneum.edu</p>
+                        </div>
+                        <a href="/User/EditProfile" class="bg-primary text-white px-6 py-2.5 rounded-xl font-bold hover:opacity-90 transition-all flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">edit</span> Edit Profile
+                        </a>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <p class="text-sm italic text-slate-600">"Passionate lifelong learner and aspiring UX architect. Exploring the intersection of design systems and psychology."</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-[#b0eaeb] p-8 rounded-[2.5rem] flex flex-col justify-between h-48 hover:shadow-md transition-shadow">
+                    <span class="material-symbols-outlined text-teal-900 text-4xl">auto_stories</span>
+                    <div>
+                        <p class="text-4xl font-extrabold text-teal-900">12</p>
+                        <p class="text-teal-800 font-bold uppercase text-xs tracking-widest">Courses Completed</p>
+                    </div>
+                </div>
+                <div class="bg-[#ffdea3] p-8 rounded-[2.5rem] flex flex-col justify-between h-48 hover:shadow-md transition-shadow">
+                    <span class="material-symbols-outlined text-orange-900 text-4xl">workspace_premium</span>
+                    <div>
+                        <p class="text-4xl font-extrabold text-orange-900">04</p>
+                        <p class="text-orange-800 font-bold uppercase text-xs tracking-widest">Certifications</p>
+                    </div>
+                </div>
+                <div class="bg-primary-container p-8 rounded-[2.5rem] flex flex-col justify-between h-48 hover:shadow-md transition-shadow">
+                    <span class="material-symbols-outlined text-primary text-4xl">schedule</span>
+                    <div>
+                        <p class="text-4xl font-extrabold text-primary">128h</p>
+                        <p class="text-primary font-bold uppercase text-xs tracking-widest">Learning Time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

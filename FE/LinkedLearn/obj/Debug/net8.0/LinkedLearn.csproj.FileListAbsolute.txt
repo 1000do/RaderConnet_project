@@ -1,0 +1,99 @@
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\appsettings.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.staticwebassets.runtime.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.staticwebassets.endpoints.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.exe
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.deps.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.runtimeconfig.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.dll
+C:\Users\binh4\source\repos\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.pdb
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.AssemblyInfoInputs.cache
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.AssemblyInfo.cs
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.csproj.CoreCompileInputs.cache
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.RazorAssemblyInfo.cache
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.RazorAssemblyInfo.cs
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\bundle\LinkedLearn.styles.css
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\projectbundle\LinkedLearn.bundle.scp.css
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.dll
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\refint\LinkedLearn.dll
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.pdb
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.genruntimeconfig.cache
+C:\Users\binh4\source\repos\FE\LinkedLearn\obj\Debug\net8.0\ref\LinkedLearn.dll
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\appsettings.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.staticwebassets.runtime.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.staticwebassets.endpoints.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.exe
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.deps.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.runtimeconfig.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.dll
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.pdb
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.AssemblyInfoInputs.cache
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.AssemblyInfo.cs
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.csproj.CoreCompileInputs.cache
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.RazorAssemblyInfo.cache
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.RazorAssemblyInfo.cs
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\bundle\LinkedLearn.styles.css
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\projectbundle\LinkedLearn.bundle.scp.css
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.dll
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\refint\LinkedLearn.dll
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.pdb
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.genruntimeconfig.cache
+C:\Users\TRUONG HUNG\Downloads\FE\LinkedLearn\obj\Debug\net8.0\ref\LinkedLearn.dll
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\appsettings.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.staticwebassets.endpoints.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.staticwebassets.runtime.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.exe
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.deps.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.runtimeconfig.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.dll
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\bin\Debug\net8.0\LinkedLearn.pdb
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.AssemblyInfoInputs.cache
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.AssemblyInfo.cs
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.csproj.CoreCompileInputs.cache
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.RazorAssemblyInfo.cache
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.RazorAssemblyInfo.cs
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\bundle\LinkedLearn.styles.css
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\scopedcss\projectbundle\LinkedLearn.bundle.scp.css
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.dll
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\refint\LinkedLearn.dll
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.pdb
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\LinkedLearn.genruntimeconfig.cache
+C:\Users\binh4\source\repos\LinkedLearn_Project\FE\LinkedLearn\obj\Debug\net8.0\ref\LinkedLearn.dll
