@@ -1,8 +1,8 @@
 ﻿// Đảm bảo đúng namespace của ViewModel
 // Đảm bảo đúng namespace của Service
-using LinkedLearn.Service;
 using LinkedLearn.Models;
 using Microsoft.AspNetCore.Mvc;
+using LinkedLearn.Service.IService;
 
 namespace LinkedLearn.Controllers
 {

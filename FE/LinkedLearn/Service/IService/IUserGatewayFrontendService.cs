@@ -1,8 +1,6 @@
-﻿
+﻿using LinkedLearn.Models;
 
-using LinkedLearn.Models;
-
-namespace LinkedLearn.Service
+namespace LinkedLearn.Service.IService
 {
     public interface IUserGatewayFrontendService
     {

@@ -1,5 +1,6 @@
 ﻿
 using LinkedLearn.Models;
+using LinkedLearn.Service.IService;
 
 namespace LinkedLearn.Service
 {
