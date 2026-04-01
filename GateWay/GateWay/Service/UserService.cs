@@ -1,4 +1,5 @@
 ﻿using GateWay.Models;
+using GateWay.Service.IService;
 using System.Net.Http.Json;
 
 namespace GateWay.Service

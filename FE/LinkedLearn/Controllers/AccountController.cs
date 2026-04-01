@@ -3,6 +3,7 @@
 using LinkedLearn.Models;
 using Microsoft.AspNetCore.Mvc;
 using LinkedLearn.Service.IService;
+using LinkedLearn.Models.UserVM;
 
 namespace LinkedLearn.Controllers
 {

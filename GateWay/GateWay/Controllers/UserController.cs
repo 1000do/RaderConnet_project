@@ -1,5 +1,5 @@
 ﻿using GateWay.Models;
-using GateWay.Service;
+using GateWay.Service.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

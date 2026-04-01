@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using GateWay.Service;
+using GateWay.Service.IService;
 
 namespace GateWay
 {

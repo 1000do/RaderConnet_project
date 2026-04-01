@@ -1,6 +1,6 @@
 ﻿using GateWay.Models;
 
-namespace GateWay.Service
+namespace GateWay.Service.IService
 {
     public interface IUserService
     {
