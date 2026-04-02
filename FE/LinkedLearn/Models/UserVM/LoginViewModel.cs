@@ -1,4 +1,4 @@
-﻿namespace LinkedLearn.Models
+﻿namespace LinkedLearn.Models.UserVM
 {
     public class LoginViewModel
     {

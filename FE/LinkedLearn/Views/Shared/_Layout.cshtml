@@ -4,10 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LinkedLearn</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -29,61 +34,32 @@
             }
         }
     </script>
+
     <style>
-        .glass-nav { backdrop-filter: blur(12px); }
-        .hero-gradient { background: linear-gradient(135deg, #006a62 0%, #43e8d8 100%); }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #006a62 0%, #43e8d8 100%);
+        }
     </style>
 </head>
+
 <body class="bg-surface font-body text-on-surface antialiased">
-    <nav class="fixed top-0 w-full z-50 bg-[#f0fcfb]/40 border-b border-primary/10 glass-nav">
-        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-            <div class="flex items-center gap-8">
-                <a href="/" class="text-2xl font-headline font-extrabold tracking-tight text-primary">LinkedLearn</a>
-                <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-                    <button class="flex items-center gap-1 text-slate-600 hover:text-primary transition-all">
-                        Categories <span class="material-symbols-outlined text-sm">expand_more</span>
-                    </button>
-                    <a class="text-slate-600 hover:text-primary" href="#">Become an Instructor</a>
-                </div>
-            </div>
-            <div class="flex items-center gap-4">
-                @if (Context.Session.GetString("UserName") == null)
-                {
-                    @* CHƯA LOGIN *@
-                    <a href="/Account/Login" class="px-6 py-2 text-sm font-semibold text-primary hover:bg-[#eaf6f5] rounded-full transition-all">Login</a>
-                    <a href="/Account/Register" class="px-6 py-2 text-sm font-semibold bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full shadow-md hover:shadow-lg transition-all">Register</a>
-                }
-                else
-                {
-                    @* ĐÃ LOGIN: Chỉ hiện 1 cụm duy nhất *@
-                    <button class="p-2 hover:bg-slate-100 rounded-lg transition-colors relative">
-                        <span class="material-symbols-outlined text-slate-600">notifications</span>
-                        <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
-                    </button>
 
-                    <div class="flex items-center gap-3 pl-2 border-l border-slate-200">
-                        <div class="hidden sm:flex flex-col items-end">
-                            <span class="text-xs font-bold text-slate-700 leading-none">@Context.Session.GetString("UserName")</span>
-                            <a href="/Account/Logout" class="text-[10px] text-red-500 hover:underline">Logout</a>
-                        </div>
-                        <a href="/User/Profile" class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary hover:scale-105 transition-transform">
-                            <img alt="User profile" class="w-full h-full object-cover" src="https://ui-avatars.com/api/?name=Alex+Thorne&background=006a62&color=fff" />
-                        </a>
-                    </div>
-                }
-            </div>
-        </div>
-    </nav>
+    <!-- HEADER -->
+    @await Html.PartialAsync("_Header")
 
+    <!-- CONTENT -->
     <main role="main" class="pt-20">
         @RenderBody()
     </main>
 
-    <footer class="bg-[#eaf6f5] py-12 px-8 border-t border-primary/5 mt-20">
-        <div class="max-w-7xl mx-auto text-center md:text-left">
-            <p class="text-sm text-slate-500">© 2026 LinkedLearn. Curating Knowledge for the Digital Age.</p>
-        </div>
-    </footer>
+    <!-- FOOTER -->
+    @await Html.PartialAsync("_Footer")
+
+    <!-- CHAT BUTTON -->
     <div class="fixed bottom-6 right-6 z-[100] group">
         <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-slate-800 text-white text-xs font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
             Chat với hỗ trợ viên
@@ -101,5 +77,6 @@
     </div>
 
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
