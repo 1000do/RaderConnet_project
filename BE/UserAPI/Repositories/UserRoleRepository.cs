@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using UserAPI.Data;
+﻿using UserAPI.Data;
 using UserAPI.Models.Entities;
 using UserAPI.Repositories.IRepositories;
 

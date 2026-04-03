@@ -1,4 +1,5 @@
-﻿@{
+﻿@model LinkedLearn.Models.UserVM.UpdateProfileViewModel
+@{
     ViewData["Title"] = "Edit Profile";
 }
 
@@ -34,54 +35,77 @@
                 <p class="text-slate-500">Manage your digital profile and preferences.</p>
             </div>
 
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-2xl mb-6 text-sm">
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+
             <section class="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-sm border border-slate-100">
                 <div class="flex items-center gap-6 mb-10 pb-8 border-b border-slate-50">
                     <div class="relative group">
                         <div class="w-24 h-24 rounded-[1.5rem] overflow-hidden ring-4 ring-primary/10">
-                            <img src="https://ui-avatars.com/api/?name=Alex+Thorne&background=006a62&color=fff" class="w-full h-full object-cover" />
+                            <img src="@(string.IsNullOrEmpty(Model.AvatarUrl) ? $"https://ui-avatars.com/api/?name={Model.FullName ?? "User"}&background=006a62&color=fff" : Model.AvatarUrl)"
+                                 class="w-full h-full object-cover" />
                         </div>
-                        <button class="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-xl shadow-lg hover:scale-110 transition-transform">
+                        <button type="button" class="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-xl shadow-lg hover:scale-110 transition-transform">
                             <span class="material-symbols-outlined text-sm">photo_camera</span>
                         </button>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-slate-800">Alex Thorne</h3>
+                        <h3 class="text-xl font-bold text-slate-800">@(Model.FullName ?? "New User")</h3>
                         <p class="text-sm text-slate-500">Update your photo and personal details.</p>
                     </div>
                 </div>
 
-                <form class="space-y-6">
+                <form asp-controller="User" asp-action="EditProfile" method="post" class="space-y-6">
+                    @* Hidden fields để giữ các giá trị không đổi *@
+                    <input type="hidden" asp-for="AvatarUrl" />
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        @* Full Name Field *@
                         <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">First Name</label>
-                            <input type="text" value="Alex" class="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all" />
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Full Name</label>
+                            <input asp-for="FullName" type="text" placeholder="Your full name..."
+                                   class="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all" />
+                            <span asp-validation-for="FullName" class="text-xs text-red-500"></span>
                         </div>
+
+                        @* Phone Number Field (TRƯỜNG MỚI THÊM) *@
                         <div class="space-y-2">
-                            <label class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Last Name</label>
-                            <input type="text" value="Thorne" class="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all" />
+                            <label class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Phone Number</label>
+                            <input asp-for="PhoneNumber" type="tel" placeholder="Your phone number..."
+                                   class="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all" />
+                            <span asp-validation-for="PhoneNumber" class="text-xs text-red-500"></span>
                         </div>
                     </div>
 
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Email Address</label>
-                        <input type="email" value="alex.thorne@atheneum.edu" class="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all" />
-                    </div>
-
+                    @* Bio Field *@
                     <div class="space-y-2">
                         <label class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Bio</label>
-                        <textarea rows="4" class="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all resize-none">Passionate lifelong learner and aspiring UX architect. Exploring the intersection of design systems and psychology.</textarea>
+                        <textarea asp-for="Bio" rows="4" placeholder="Tell us something about yourself..."
+                                  class="w-full bg-slate-50 border-none rounded-2xl px-5 py-4 focus:ring-2 focus:ring-primary/20 transition-all resize-none"></textarea>
+                        <span asp-validation-for="Bio" class="text-xs text-red-500"></span>
                     </div>
 
+                    @* Action Buttons *@
                     <div class="pt-6 flex flex-wrap gap-4">
                         <button type="submit" class="px-10 py-4 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">
                             Save Changes
                         </button>
-                        <button type="button" class="px-10 py-4 bg-slate-100 text-slate-600 font-bold rounded-2xl hover:bg-slate-200 active:scale-95 transition-all">
+                        <a href="/User/Profile" class="px-10 py-4 bg-slate-100 text-slate-600 text-center font-bold rounded-2xl hover:bg-slate-200 active:scale-95 transition-all">
                             Cancel
-                        </button>
+                        </a>
                     </div>
                 </form>
             </section>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

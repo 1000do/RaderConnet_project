@@ -6,10 +6,9 @@ namespace UserAPI.Models.Entities
     {
         public int UserId { get; set; }
         public string Email { get; set; }
-        public string Username { get; set; } // 🔥 thêm dòng này
-
         public string PasswordHash { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public int Status { get; set; } = 1; // Khớp với DB (1: Active)
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public Profile Profile { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }

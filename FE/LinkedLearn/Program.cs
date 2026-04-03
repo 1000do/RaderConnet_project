@@ -12,10 +12,14 @@ namespace LinkedLearn
             // 1. Thêm dịch vụ Controllers và Views
             builder.Services.AddControllersWithViews();
 
-            // 🔥 2. DÒNG QUAN TRỌNG NHẤT BỊ THIẾU: Đăng ký HttpClient Factory
+            // 🔥 2. ĐĂNG KÝ CÁC DỊCH VỤ CƠ SỞ (SỬA LỖI Ở ĐÂY)
+            // Cần dòng này để UserGatewayFrontendService đọc được Cookie từ Browser
+            builder.Services.AddHttpContextAccessor();
+
+            // Cần dòng này để khởi tạo HttpClient gọi sang Gateway
             builder.Services.AddHttpClient();
 
-            // 3. Đăng ký Session
+            // 3. Đăng ký Session (Để lưu UserName hiển thị trên Layout)
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -23,7 +27,7 @@ namespace LinkedLearn
                 options.Cookie.IsEssential = true;
             });
 
-            // 4. Đăng ký Gateway Service của bạn
+            // 4. Đăng ký Gateway Service (Tầng nghiệp vụ gọi API)
             builder.Services.AddScoped<IUserGatewayFrontendService, UserGatewayFrontendService>();
 
             var app = builder.Build();
@@ -35,10 +39,12 @@ namespace LinkedLearn
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // Lưu ý: Nếu test local ko có HTTPS thì có thể comment dòng này
+            // app.UseHttpsRedirection(); 
+
             app.UseStaticFiles();
 
-            // 5. Kích hoạt Session (phải trước UseRouting)
+            // 5. Kích hoạt Session (Phải đặt trước UseRouting và UseAuthorization)
             app.UseSession();
 
             app.UseRouting();
