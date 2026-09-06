@@ -416,3 +416,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Docker Database Persistence
+postgres_data/
+**/postgres_data/
+

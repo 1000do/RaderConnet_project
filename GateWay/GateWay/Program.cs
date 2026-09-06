@@ -1,17 +1,22 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using GateWay.Service;
 using GateWay.Service.IService;
 using Microsoft.OpenApi.Models;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 
 namespace GateWay
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Nạp file cấu hình Ocelot
+            builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 
             // ================= 1. CORS CONFIG =================
             builder.Services.AddCors(options =>
@@ -60,12 +65,13 @@ namespace GateWay
 
             builder.Services.AddAuthorization();
 
-            // ================= 3. DEPENDENCY INJECTION =================
+            // ================= 3. DEPENDENCY INJECTION & OCELOT =================
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddHttpClient(); // Đăng ký HttpClientFactory cho TestController
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddOcelot(builder.Configuration);
 
             // ================= 4. SWAGGER CONFIG (GIỐNG USER API) =================
             builder.Services.AddSwaggerGen(c =>
@@ -98,23 +104,22 @@ namespace GateWay
             var app = builder.Build();
 
             // ================= 5. MIDDLEWARE PIPELINE =================
-            // Luôn bật Swagger ở cả Dev và Prod để tiện test (hoặc if app.Environment.IsDevelopment())
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gateway API V1");
-                c.RoutePrefix = string.Empty; // Vào thẳng localhost:PORT là thấy Swagger
+                c.RoutePrefix = string.Empty;
             });
 
             app.UseCors("AllowFrontend");
-
-            // Không bắt buộc HttpsRedirection nếu đang chạy Docker/Local Lab
-            // app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
+
+            // Kích hoạt Ocelot Middleware
+            await app.UseOcelot();
 
             app.Run();
         }

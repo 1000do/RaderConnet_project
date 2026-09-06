@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # 1. DATABASE POSTGRESQL
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./BE/UserAPI.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./BE/postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    networks:
+      - my-shared-network
+
+  # 2. USER MICROSERVICE (BE)
+  user-api:
+    container_name: user-api
+    build:
+      context: ./BE
+      dockerfile: UserAPI/Dockerfile
+    ports:
+      - "${USER_API_PORT:-8081}:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+      - Jwt__Key=${JWT_SECRET_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
+    depends_on:
+      - postgres
+    networks:
+      - my-shared-network
+
+  # 3. API GATEWAY (OCELOT)
+  gateway-api:
+    container_name: gateway-api
+    build:
+      context: ./GateWay
+      dockerfile: GateWay/Dockerfile
+    ports:
+      - "${GATEWAY_PORT:-5000}:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - Jwt__Key=${JWT_SECRET_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
+    depends_on:
+      - user-api
+    networks:
+      - my-shared-network
+
+  # 4. FRONTEND (LINKEDLEARN)
+  frontend:
+    container_name: frontend-app
+    build:
+      context: ./FE
+      dockerfile: LinkedLearn/Dockerfile
+    ports:
+      - "${FRONTEND_PORT:-3000}:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+    depends_on:
+      - gateway-api
+    networks:
+      - my-shared-network
+
+networks:
+  my-shared-network:
+    driver: bridge
