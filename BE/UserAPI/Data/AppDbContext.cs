@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using UserAPI.Models.Entities;
 
 namespace UserAPI.Data
@@ -55,7 +55,8 @@ namespace UserAPI.Data
                 entity.Property(p => p.PhoneNumber).HasColumnName("phone_number");
                 entity.Property(p => p.AvatarUrl).HasColumnName("avatar_url");
                 entity.Property(p => p.Bio).HasColumnName("bio");
-                entity.Property(p => p.IsInstructor).HasColumnName("is_instructor");
+                entity.Property(p => p.Gender).HasColumnName("gender");
+
                 entity.Property(p => p.IsPublicEmail).HasColumnName("is_public_email");
                 entity.Property(p => p.IsPublicPhone).HasColumnName("is_public_phone");
                 entity.Property(p => p.IsPublicProfile).HasColumnName("is_public_profile");

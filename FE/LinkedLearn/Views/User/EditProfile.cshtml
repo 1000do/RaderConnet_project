@@ -1,4 +1,4 @@
-﻿@model LinkedLearn.Models.UserVM.UpdateProfileViewModel
+@model LinkedLearn.Models.UserVM.UpdateProfileViewModel
 @{
     ViewData["Title"] = "Edit Profile";
 }
@@ -46,7 +46,7 @@
                 <div class="flex items-center gap-6 mb-10 pb-8 border-b border-slate-50">
                     <div class="relative group">
                         <div class="w-24 h-24 rounded-[1.5rem] overflow-hidden ring-4 ring-primary/10">
-                            <img src="@(string.IsNullOrEmpty(Model.AvatarUrl) ? $"https://ui-avatars.com/api/?name={Model.FullName ?? "User"}&background=006a62&color=fff" : Model.AvatarUrl)"
+                            <img src="@(string.IsNullOrEmpty(Model?.AvatarUrl) ? $"https://ui-avatars.com/api/?name={Model?.FullName ?? "User"}&background=006a62&color=fff" : Model.AvatarUrl)"
                                  class="w-full h-full object-cover" />
                         </div>
                         <button type="button" class="absolute -bottom-2 -right-2 bg-primary text-white p-2 rounded-xl shadow-lg hover:scale-110 transition-transform">
@@ -54,7 +54,7 @@
                         </button>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-slate-800">@(Model.FullName ?? "New User")</h3>
+                        <h3 class="text-xl font-bold text-slate-800">@(Model?.FullName ?? "New User")</h3>
                         <p class="text-sm text-slate-500">Update your photo and personal details.</p>
                     </div>
                 </div>

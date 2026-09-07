@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  # 1. DATABASE POSTGRESQL
+  # 1. DATABASE POSTGRESQL + POSTGIS
   postgres:
-    image: postgres:15
+    image: postgis/postgis:15-3.3
     container_name: postgres-db
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -31,6 +31,28 @@ services:
       - Jwt__Key=${JWT_SECRET_KEY}
       - Jwt__Issuer=${JWT_ISSUER}
       - Jwt__Audience=${JWT_AUDIENCE}
+      - Cloudinary__CloudName=${CLOUDINARY_CLOUD_NAME}
+      - Cloudinary__ApiKey=${CLOUDINARY_API_KEY}
+      - Cloudinary__ApiSecret=${CLOUDINARY_API_SECRET}
+    depends_on:
+      - postgres
+    networks:
+      - my-shared-network
+
+  # 2.5 RADAR MICROSERVICE (BE)
+  radar-api:
+    container_name: radar-api
+    build:
+      context: ./BE
+      dockerfile: RadarAPI/Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=radardb;Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+      - Jwt__Key=${JWT_SECRET_KEY:-THIS_IS_SECRET_KEY_AT_LEAST_32_CHAR_LONG_123456}
+      - Jwt__Issuer=${JWT_ISSUER:-LinkedLearnGateway}
+      - Jwt__Audience=${JWT_AUDIENCE:-LinkedLearnClients}
     depends_on:
       - postgres
     networks:

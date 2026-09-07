@@ -1,4 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -14,22 +14,25 @@ public class UserService : IUserService
     private readonly IUserRoleRepository _userRoleRepo;
     private readonly IRoleRepository _roleRepo;
     private readonly IConfiguration _config;
+    private readonly CloudinaryDotNet.Cloudinary _cloudinary;
 
     public UserService(
         IUserRepository userRepo,
         IProfileRepository profileRepo,
         IUserRoleRepository userRoleRepo,
         IRoleRepository roleRepo,
-        IConfiguration config)
+        IConfiguration config,
+        CloudinaryDotNet.Cloudinary cloudinary)
     {
         _userRepo = userRepo;
         _profileRepo = profileRepo;
         _userRoleRepo = userRoleRepo;
         _roleRepo = roleRepo;
         _config = config;
+        _cloudinary = cloudinary;
     }
 
-    public async Task<string> Register(string username, string email, string password)
+    public async Task<string> Register(string username, string email, string password, string gender)
     {
         // Kiểm tra Email (Chuyển về chữ thường để so sánh)
         if (await _userRepo.EmailExistsAsync(email.ToLower()))
@@ -49,7 +52,10 @@ public class UserService : IUserService
             {
                 Username = username,
                 FullName = username,
-                IsInstructor = false,
+                Gender = gender.ToLower(),
+                AvatarUrl = gender.ToLower() == "female" || gender.ToLower() == "nữ" || gender.ToLower() == "girl" 
+                            ? "/images/gai.png" 
+                            : "/images/man.png",
                 IsPublicProfile = true
             }
         };
@@ -57,7 +63,7 @@ public class UserService : IUserService
         await _userRepo.AddAsync(user);
         await _userRepo.SaveChangesAsync();
 
-        var role = await _roleRepo.GetByNameAsync("learner");
+        var role = await _roleRepo.GetByNameAsync("user");
         if (role != null)
         {
             await _userRoleRepo.AddAsync(new UserRole { UserId = user.UserId, RoleId = role.RoleId });
@@ -118,6 +124,33 @@ public class UserService : IUserService
         return true;
     }
 
+    public async Task<string?> UploadAvatarAsync(int userId, IFormFile file)
+    {
+        var profile = await _profileRepo.GetByUserIdAsync(userId);
+        if (profile == null) return null;
+
+        if (file.Length > 0)
+        {
+            using var stream = file.OpenReadStream();
+            var uploadParams = new CloudinaryDotNet.Actions.ImageUploadParams
+            {
+                File = new CloudinaryDotNet.FileDescription(file.FileName, stream),
+                Folder = "Radar/Avatars",
+                Transformation = new CloudinaryDotNet.Transformation().Width(500).Height(500).Crop("fill")
+            };
+
+            var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+            
+            if (uploadResult.Error != null)
+                throw new Exception(uploadResult.Error.Message);
+
+            profile.AvatarUrl = uploadResult.SecureUrl.ToString();
+            await _profileRepo.SaveChangesAsync();
+            return profile.AvatarUrl;
+        }
+        return null;
+    }
+
     private string GenerateJwt(User user)
     {
         var jwtKey = _config["Jwt:Key"] ?? throw new Exception("Jwt:Key is missing");
@@ -128,7 +161,9 @@ public class UserService : IUserService
         {
             new Claim("userId", user.UserId.ToString()),
             new Claim(ClaimTypes.Email, user.Email),
-            new Claim("username", user.Profile?.Username ?? "")
+            new Claim("username", user.Profile?.Username ?? ""),
+            new Claim("avatar", user.Profile?.AvatarUrl ?? ""),
+            new Claim("fullname", user.Profile?.FullName ?? user.Profile?.Username ?? "")
         };
 
         if (user.UserRoles != null)

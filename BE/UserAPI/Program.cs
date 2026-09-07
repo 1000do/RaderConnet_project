@@ -29,6 +29,13 @@ namespace UserAPI
             builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
+            // Config Cloudinary
+            var cloudinaryAccount = new CloudinaryDotNet.Account(
+                builder.Configuration["Cloudinary:CloudName"],
+                builder.Configuration["Cloudinary:ApiKey"],
+                builder.Configuration["Cloudinary:ApiSecret"]
+            );
+            builder.Services.AddSingleton(new CloudinaryDotNet.Cloudinary(cloudinaryAccount));
 
             builder.Services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>

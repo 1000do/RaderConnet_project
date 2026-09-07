@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Trạm Radar";
+}
+
+<div class="max-w-4xl mx-auto mt-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-fb-text">📡 Trạm Radar - Kèo Quanh Đây</h2>
+        <a asp-controller="Radar" asp-action="Create" class="bg-fb-blue text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition">
+            + Tạo Kèo Mới
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div id="radar-status" class="mb-4 p-4 rounded-md bg-fb-card text-fb-text border border-fb-border flex items-center shadow-sm">
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-fb-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Đang dò tìm tọa độ GPS của bạn để quyét kèo...
+    </div>
+
+    <!-- Nơi đổ danh sách kèo -->
+    <div id="radar-results" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Load bằng AJAX -->
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+
+                    $("#radar-status").html("✅ Đã bắt được tọa độ! Đang quét kèo trong bán kính 5km...");
+
+                    // Gọi AJAX về RadarController
+                    $.get(`/Radar/Search?longitude=${lng}&latitude=${lat}`, function (data) {
+                        $("#radar-status").hide();
+                        $("#radar-results").html(data);
+                    }).fail(function() {
+                        $("#radar-status").html("❌ Lỗi khi tải danh sách kèo từ Server.");
+                        $("#radar-status").removeClass("bg-fb-card").addClass("bg-red-100 text-red-700");
+                    });
+
+                }, function (error) {
+                    $("#radar-status").html("❌ Không thể lấy GPS. Hãy cho phép truy cập vị trí!");
+                    $("#radar-status").removeClass("bg-fb-card").addClass("bg-red-100 text-red-700");
+                });
+            } else {
+                alert("Trình duyệt không hỗ trợ định vị.");
+            }
+        });
+
+        // Hàm xin tham gia Kèo
+        function joinActivity(id) {
+            if(!confirm("Bạn có chắc muốn xin tham gia kèo này?")) return;
+
+            $.post(`/Radar/Join/${id}`, function(res) {
+                if(res.success) {
+                    alert("✅ " + res.message);
+                    location.reload(); // Tạm thời reload để thấy thay đổi
+                } else {
+                    alert("❌ Lỗi: " + res.message);
+                }
+            }).fail(function() {
+                alert("❌ Có lỗi xảy ra khi gọi API.");
+            });
+        }
+    </script>
+}

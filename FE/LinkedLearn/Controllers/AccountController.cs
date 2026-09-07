@@ -1,4 +1,4 @@
-﻿using LinkedLearn.Models;
+using LinkedLearn.Models;
 using Microsoft.AspNetCore.Mvc;
 using LinkedLearn.Service.IService;
 using LinkedLearn.Models.UserVM;
@@ -86,8 +86,33 @@ namespace LinkedLearn.Controllers
                 // Lưu Token sạch vào Cookie
                 Response.Cookies.Append("jwt_token", token, cookieOptions);
 
-                // Lưu UserName (Identifier thường là ASCII, nếu có dấu thì nên dùng WebUtility.UrlEncode)
-                Response.Cookies.Append("UserName", model.Identifier, new CookieOptions { Expires = DateTime.Now.AddDays(7) });
+                // Lấy Avatar và FullName từ JWT Token
+                var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+                if (handler.CanReadToken(token))
+                {
+                    var jwtToken = handler.ReadJwtToken(token);
+                    
+                    var avatar = jwtToken.Claims.FirstOrDefault(c => c.Type == "avatar")?.Value;
+                    if (!string.IsNullOrEmpty(avatar))
+                    {
+                        Response.Cookies.Append("UserAvatar", avatar, new CookieOptions { Expires = DateTime.Now.AddDays(7) });
+                    }
+
+                    var fullname = jwtToken.Claims.FirstOrDefault(c => c.Type == "fullname")?.Value;
+                    if (!string.IsNullOrEmpty(fullname))
+                    {
+                        // Lưu FullName có dấu bằng cách Encode
+                        Response.Cookies.Append("UserName", Uri.EscapeDataString(fullname), new CookieOptions { Expires = DateTime.Now.AddDays(7) });
+                    }
+                    else 
+                    {
+                        Response.Cookies.Append("UserName", model.Identifier, new CookieOptions { Expires = DateTime.Now.AddDays(7) });
+                    }
+                }
+                else 
+                {
+                    Response.Cookies.Append("UserName", model.Identifier, new CookieOptions { Expires = DateTime.Now.AddDays(7) });
+                }
 
                 return RedirectToAction("Index", "Home");
             }
@@ -105,6 +130,7 @@ namespace LinkedLearn.Controllers
             HttpContext.Session.Clear();
             Response.Cookies.Delete("jwt_token");
             Response.Cookies.Delete("UserName");
+            Response.Cookies.Delete("UserAvatar");
             return RedirectToAction("Login");
         }
     }

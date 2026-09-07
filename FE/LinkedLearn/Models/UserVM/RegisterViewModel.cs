@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace LinkedLearn.Models.UserVM
 {
@@ -22,5 +22,8 @@ namespace LinkedLearn.Models.UserVM
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Mật khẩu xác nhận không khớp")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng chọn giới tính")]
+        public string Gender { get; set; }
     }
 }

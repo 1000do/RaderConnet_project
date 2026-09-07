@@ -1,4 +1,4 @@
-﻿    @using Microsoft.AspNetCore.Http
+    @using Microsoft.AspNetCore.Http
 
     <nav class="fixed top-0 w-full z-50 bg-[#f0fcfb]/40 border-b border-primary/10 glass-nav">
         <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
@@ -26,7 +26,10 @@
             <div class="flex items-center gap-4">
                 @{
                     // Kiểm tra Cookie UserName thay vì Session
-                    var userName = Context.Request.Cookies["UserName"];
+                    var rawUserName = Context.Request.Cookies["UserName"];
+                    var userName = string.IsNullOrEmpty(rawUserName) ? "" : Uri.UnescapeDataString(rawUserName);
+                    var userAvatar = Context.Request.Cookies["UserAvatar"];
+                    var defaultAvatarUrl = string.IsNullOrEmpty(userAvatar) ? $"https://ui-avatars.com/api/?name={userName}&background=006a62&color=fff" : userAvatar;
                 }
 
                 @if (string.IsNullOrEmpty(userName))
@@ -49,7 +52,7 @@
 
                         <a href="/User/Profile" class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary hover:scale-105 transition-transform">
                             <img class="w-full h-full object-cover"
-                                 src="https://ui-avatars.com/api/?name=@userName&background=006a62&color=fff" />
+                                 src="@defaultAvatarUrl" />
                         </a>
                     </div>
                 }

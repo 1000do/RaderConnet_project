@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using GateWay.Service;
-using GateWay.Service.IService;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
@@ -67,9 +65,6 @@ namespace GateWay
 
             // ================= 3. DEPENDENCY INJECTION & OCELOT =================
             builder.Services.AddHttpContextAccessor();
-            builder.Services.AddHttpClient(); // Đăng ký HttpClientFactory cho TestController
-            builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddOcelot(builder.Configuration);
 
@@ -115,8 +110,6 @@ namespace GateWay
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.MapControllers();
 
             // Kích hoạt Ocelot Middleware
             await app.UseOcelot();

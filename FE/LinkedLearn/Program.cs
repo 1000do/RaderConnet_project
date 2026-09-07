@@ -1,4 +1,4 @@
-﻿using LinkedLearn.Service;
+using LinkedLearn.Service;
 using LinkedLearn.Service.IService;
 
 namespace LinkedLearn
@@ -27,8 +27,10 @@ namespace LinkedLearn
                 options.Cookie.IsEssential = true;
             });
 
-            // 4. Đăng ký Gateway Service (Tầng nghiệp vụ gọi API)
+            builder.Services.AddHttpClient();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IUserGatewayFrontendService, UserGatewayFrontendService>();
+            builder.Services.AddScoped<IRadarGatewayFrontendService, RadarGatewayFrontendService>();
 
             var app = builder.Build();
 
@@ -52,7 +54,7 @@ namespace LinkedLearn
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=Login}/{id?}");
 
             app.Run();
         }

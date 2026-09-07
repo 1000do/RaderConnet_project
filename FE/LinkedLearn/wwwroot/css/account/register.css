@@ -1,0 +1,4 @@
+/* Styling dành riêng cho trang Đăng ký (Register) */
+.register-card-shadow {
+    box-shadow: 0 20px 40px -15px rgba(0, 106, 98, 0.12);
+}

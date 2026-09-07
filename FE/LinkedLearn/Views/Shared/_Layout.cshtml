@@ -1,82 +1,182 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LinkedLearn</title>
+    <title>@ViewData["Title"] - Micro-Meetup Radar</title>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-
-    <!-- Tailwind Config -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
+            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#006a62",
-                        "primary-container": "#43e8d8",
-                        "on-primary": "#ffffff",
-                        "secondary": "#006b60",
-                        "surface": "#f0fcfb",
-                        "on-surface": "#131d1e",
-                        "surface-container-low": "#eaf6f5",
+                        "fb-bg": "#F0F2F5",
+                        "fb-card": "#FFFFFF",
+                        "fb-text": "#050507",
+                        "fb-subtext": "#65676B",
+                        "fb-border": "#E4E6EB",
+                        "fb-hover": "#F2F2F2",
+                        "fb-blue": "#1877F2",
+                        "fb-blue-hover": "#166fe5",
+                        "fb-blue-subtle": "#E7F3FF",
+                        "fb-green": "#31A24C",
+                        "fb-green-light": "#E7F8ED",
+                        "fb-red": "#FA3E3E",
                     },
                     fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"]
+                        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
                     }
                 }
             }
-        }
+        };
     </script>
-
     <style>
-        .glass-nav {
-            backdrop-filter: blur(12px);
+        body {
+            background-color: #F0F2F5;
+            color: #050507;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .hero-gradient {
-            background: linear-gradient(135deg, #006a62 0%, #43e8d8 100%);
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #CCD0D5;
+            border-radius: 9999px;
+        }
+
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #B0B3B8;
+            }
+
+        @@keyframes sweep {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .radar-sweep {
+            animation: sweep 4s linear infinite;
         }
     </style>
+    @await RenderSectionAsync("Styles", required: false)
 </head>
+@{
+    var rawUserName = Context.Request.Cookies["UserName"];
+    var userName = string.IsNullOrEmpty(rawUserName) ? "Khách" : Uri.UnescapeDataString(rawUserName);
+    var userAvatar = Context.Request.Cookies["UserAvatar"];
+    var defaultAvatarUrl = string.IsNullOrEmpty(userAvatar) ? $"/images/man.png" : userAvatar;
+}
+<body class="bg-fb-bg text-fb-text min-h-screen">
+    <!-- TOP NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 h-14 bg-white border-b border-fb-border z-50 px-4 flex items-center justify-between shadow-sm">
+        <!-- Left: Logo & Search -->
+        <div class="flex items-center gap-2.5 min-w-[280px]">
+            <a class="flex items-center gap-2 group" asp-controller="Home" asp-action="Index">
+                <div class="w-10 h-10 rounded-full bg-fb-blue flex items-center justify-center text-white shadow-sm">
+                    <span class="material-symbols-outlined text-[26px]">radar</span>
+                </div>
+                <span class="font-bold text-[22px] tracking-tight text-fb-blue">Radar</span>
+            </a>
+            <div class="relative w-64 md:w-72">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-fb-subtext text-[20px]">search</span>
+                <input class="w-full h-10 pl-10 pr-4 bg-fb-bg rounded-full text-[14px] text-fb-text placeholder:text-fb-subtext border-none focus:ring-2 focus:ring-fb-blue focus:bg-white transition-all" placeholder="Tìm kiếm hội nhóm, địa điểm..." type="text" />
+            </div>
+        </div>
+        <!-- Center: Main Navigation Tabs -->
+        <nav class="hidden md:flex items-center h-full gap-1 flex-1 max-w-[560px] justify-center">
+            <a class="h-full px-7 flex items-center justify-center text-fb-blue border-b-4 border-fb-blue transition-colors" href="/Radar/Index" title="Radar Trực tiếp">
+                <span class="material-symbols-outlined text-[28px]">explore</span>
+            </a>
+            <a class="h-full px-7 flex items-center justify-center text-fb-subtext hover:bg-fb-hover rounded-lg my-1 transition-colors" href="#" title="Kèo của tôi">
+                <span class="material-symbols-outlined text-[28px]">groups</span>
+            </a>
+            <a class="h-full px-7 flex items-center justify-center text-fb-subtext hover:bg-fb-hover rounded-lg my-1 transition-colors" href="#" title="Cộng đồng">
+                <span class="material-symbols-outlined text-[28px]">forum</span>
+            </a>
+            <a class="h-full px-7 flex items-center justify-center text-fb-subtext hover:bg-fb-hover rounded-lg my-1 transition-colors" href="#" title="Khám phá địa điểm">
+                <span class="material-symbols-outlined text-[28px]">storefront</span>
+            </a>
+        </nav>
+        <!-- Right: Quick Actions & Profile -->
+        <div class="flex items-center gap-2">
+            <a href="/Radar/Create" class="hidden lg:flex items-center gap-1.5 h-9 px-3.5 rounded-full bg-fb-blue text-white hover:bg-fb-blue-hover transition font-medium text-[13px] shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                <span>Tạo kèo nhanh</span>
+            </a>
+            <button class="w-10 h-10 rounded-full bg-[#E4E6EB] hover:bg-[#D8DADF] flex items-center justify-center text-fb-text transition" title="Tin nhắn">
+                <span class="material-symbols-outlined text-[20px]">chat</span>
+            </button>
+            <div class="relative">
+                <button class="w-10 h-10 rounded-full bg-[#E4E6EB] hover:bg-[#D8DADF] flex items-center justify-center text-fb-text transition" title="Thông báo">
+                    <span class="material-symbols-outlined text-[20px]">notifications</span>
+                </button>
+                <span class="absolute -top-1 -right-1 bg-fb-red text-white text-[11px] font-bold rounded-full w-5 h-5 flex items-center justify-center ring-2 ring-white">3</span>
+            </div>
+            <!-- Profile Dropdown -->
+            <div class="relative group">
+                <div class="flex items-center ml-1 cursor-pointer pl-1 py-1 pr-1.5 rounded-full hover:bg-fb-hover">
+                    <img alt="@userName" class="w-9 h-9 rounded-full object-cover ring-1 ring-fb-border" src="@defaultAvatarUrl" onerror="this.src='/images/man.png';" />
+                    <span class="material-symbols-outlined text-fb-subtext text-[20px] ml-0.5">arrow_drop_down</span>
+                </div>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 top-full mt-1 w-[280px] bg-white rounded-xl shadow-xl border border-fb-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+                    <!-- Profile Header inside Dropdown -->
+                    <div class="p-2">
+                        <a href="/User/Profile" class="flex items-center gap-3 p-2 rounded-lg hover:bg-fb-bg transition">
+                            <img alt="@userName" class="w-10 h-10 rounded-full object-cover ring-1 ring-fb-border" src="@defaultAvatarUrl" onerror="this.src='/images/man.png';" />
+                            <div class="flex flex-col">
+                                <span class="font-bold text-[15px] text-fb-text">@userName</span>
+                                <span class="text-[13px] text-fb-subtext">Xem hồ sơ của bạn</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="border-t border-fb-border my-1"></div>
+                    
+                    <!-- Menu Items -->
+                    <div class="p-2 flex flex-col gap-1">
+                        <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-fb-bg transition">
+                            <div class="w-9 h-9 rounded-full bg-[#E4E6EB] flex items-center justify-center text-fb-text">
+                                <span class="material-symbols-outlined text-[20px]">lock</span>
+                            </div>
+                            <span class="font-medium text-[14px] text-fb-text">Cài đặt & Quyền riêng tư</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 p-2 rounded-lg hover:bg-fb-bg transition">
+                            <div class="w-9 h-9 rounded-full bg-[#E4E6EB] flex items-center justify-center text-fb-text">
+                                <span class="material-symbols-outlined text-[20px]">report</span>
+                            </div>
+                            <span class="font-medium text-[14px] text-fb-text">Đóng góp ý kiến & Báo cáo sự cố</span>
+                        </a>
+                        <a href="/Account/Logout" class="flex items-center gap-3 p-2 rounded-lg hover:bg-fb-bg transition">
+                            <div class="w-9 h-9 rounded-full bg-[#E4E6EB] flex items-center justify-center text-fb-text">
+                                <span class="material-symbols-outlined text-[20px]">logout</span>
+                            </div>
+                            <span class="font-medium text-[14px] text-fb-text">Đăng xuất</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<body class="bg-surface font-body text-on-surface antialiased">
-
-    <!-- HEADER -->
-    @await Html.PartialAsync("_Header")
-
-    <!-- CONTENT -->
-    <main role="main" class="pt-20">
-        @RenderBody()
-    </main>
-
-    <!-- FOOTER -->
-    @await Html.PartialAsync("_Footer")
-
-    <!-- CHAT BUTTON -->
-    <div class="fixed bottom-6 right-6 z-[100] group">
-        <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-slate-800 text-white text-xs font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            Chat với hỗ trợ viên
-        </span>
-
-        <button class="w-14 h-14 bg-primary-container text-primary rounded-2xl shadow-2xl shadow-primary/30 flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300 relative">
-            <span class="material-symbols-outlined text-[28px]" style='font-variation-settings: "FILL" 1;'>
-                chat_bubble
-            </span>
-
-            <span class="absolute -top-1 -right-1 w-5 h-5 bg-orange-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-surface">
-                1
-            </span>
-        </button>
-    </div>
+    @RenderBody()
 
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>

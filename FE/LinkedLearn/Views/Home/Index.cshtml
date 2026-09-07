@@ -1,62 +1,622 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Radar";
+    var rawUserName = Context.Request.Cookies["UserName"];
+    var userName = string.IsNullOrEmpty(rawUserName) ? "Khách" : Uri.UnescapeDataString(rawUserName);
+    var userAvatar = Context.Request.Cookies["UserAvatar"];
+    var defaultAvatarUrl = string.IsNullOrEmpty(userAvatar) ? $"https://ui-avatars.com/api/?name={userName}&background=006a62&color=fff" : userAvatar;
 }
 
-<section class="relative px-8 pt-20 pb-32 overflow-hidden">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
-        <div class="flex-1 z-10">
-            <h1 class="font-headline text-5xl md:text-6xl font-extrabold text-on-surface tracking-tight leading-tight mb-6">
-                Master New Skills,<br />
-                <span class="text-primary">Anytime, Anywhere.</span>
-            </h1>
-            <p class="text-lg text-slate-600 max-w-xl mb-10 leading-relaxed">
-                Curated learning paths designed by industry experts. Join 2M+ students unlocking their digital potential with LinkedLearn.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                <div class="relative flex-1 max-w-md">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                    <input class="w-full bg-white border border-slate-200 rounded-full py-4 pl-12 pr-4 shadow-xl focus:ring-4 focus:ring-primary/10 outline-none" placeholder="What do you want to learn today?" type="text" />
-                </div>
-                <button class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold shadow-lg hover:opacity-90 transition-all">
-                    Explore Courses
-                </button>
+<main class="w-full pt-14 flex justify-center">
+<div class="w-full max-w-[1440px] px-2 sm:px-4 py-4 flex items-start justify-between gap-6">
+<!-- ========================================================= -->
+<!-- 1. LEFT SIDEBAR: 320px Sticky                            -->
+<!-- ========================================================= -->
+<aside class="hidden xl:flex flex-col gap-3.5 w-[320px] shrink-0 sticky top-[70px] max-h-[calc(100vh-80px)] overflow-y-auto custom-scrollbar pr-1.5">
+<!-- User Profile Radar Card -->
+<div class="bg-fb-card rounded-xl p-3.5 border border-fb-border shadow-sm flex items-center gap-3">
+<div class="relative shrink-0">
+<img alt="User @userName" class="w-12 h-12 rounded-full object-cover ring-2 ring-fb-blue/20" src="@defaultAvatarUrl" onerror="this.src='/images/man.png';"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-fb-green border-2 border-white rounded-full"></span>
+</div>
+<div class="min-w-0 flex-1">
+<h2 class="font-bold text-[15px] text-fb-text truncate">@userName</h2>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-fb-green animate-pulse"></span>
+<span class="text-[12px] font-semibold text-fb-green truncate">Đang bật Radar kết nối 🟢</span>
+</div>
+</div>
+<button class="p-1.5 text-fb-subtext hover:text-fb-text hover:bg-fb-hover rounded-full transition" title="Cài đặt hồ sơ">
+<span class="material-symbols-outlined text-[19px]">tune</span>
+</button>
+</div>
+<!-- Distance Radius Slider Widget -->
+<div class="bg-fb-card rounded-xl p-4 border border-fb-border shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-fb-blue text-[20px]">radar</span>
+<span class="font-semibold text-[14px] text-fb-text">Bán kính quét Radar</span>
+</div>
+<span class="px-2 py-0.5 bg-fb-blue-subtle text-fb-blue font-bold text-[12px] rounded-full" id="radius-badge">2.0 km</span>
+</div>
+<div class="flex flex-col gap-1">
+<input class="w-full h-1.5 bg-[#E4E6EB] rounded-lg appearance-none cursor-pointer accent-fb-blue" id="radius-slider" max="5000" min="500" oninput="document.getElementById('radius-badge').innerText = (this.value >= 1000 ? (this.value/1000).toFixed(1) + ' km' : this.value + ' m')" step="250" type="range" value="2000"/>
+<div class="flex justify-between text-[11px] font-medium text-fb-subtext mt-1">
+<span>500m</span>
+<span>1km</span>
+<span class="text-fb-blue font-bold">2km</span>
+<span>3.5km</span>
+<span>5km</span>
+</div>
+</div>
+<div class="border-t border-fb-border pt-3 flex flex-col gap-2.5">
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center material-symbols-outlined text-[16px]">bolt</span>
+<span class="text-[13px] font-medium text-fb-text group-hover:text-fb-blue transition">Đang diễn ra ngay</span>
+</div>
+<input checked="" class="w-4 h-4 rounded text-fb-blue focus:ring-fb-blue rounded accent-fb-blue" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center material-symbols-outlined text-[16px]">group_add</span>
+<span class="text-[13px] font-medium text-fb-text group-hover:text-fb-blue transition">Cần người gấp (thiếu 1-2)</span>
+</div>
+<input checked="" class="w-4 h-4 rounded text-fb-blue focus:ring-fb-blue rounded accent-fb-blue" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Quick Filter Pills -->
+<div class="bg-fb-card rounded-xl p-4 border border-fb-border shadow-sm flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="text-[13px] font-bold text-fb-subtext uppercase tracking-wider">Lọc theo sở thích</span>
+<span class="text-[12px] text-fb-blue hover:underline cursor-pointer">Làm mới</span>
+</div>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<button class="px-3 py-1.5 rounded-full bg-fb-blue text-white text-[13px] font-semibold transition shadow-xs">
+              Tất cả
+            </button>
+<button class="px-3 py-1.5 rounded-full bg-fb-bg hover:bg-fb-blue-subtle hover:text-fb-blue text-fb-text text-[13px] font-medium transition flex items-center gap-1">
+<span>☕</span> Cà phê &amp; Tech
+            </button>
+<button class="px-3 py-1.5 rounded-full bg-fb-bg hover:bg-fb-blue-subtle hover:text-fb-blue text-fb-text text-[13px] font-medium transition flex items-center gap-1">
+<span>🎲</span> Board Game
+            </button>
+<button class="px-3 py-1.5 rounded-full bg-fb-bg hover:bg-fb-blue-subtle hover:text-fb-blue text-fb-text text-[13px] font-medium transition flex items-center gap-1">
+<span>🏸</span> Thể thao &amp; Cầu lông
+            </button>
+<button class="px-3 py-1.5 rounded-full bg-fb-bg hover:bg-fb-blue-subtle hover:text-fb-blue text-fb-text text-[13px] font-medium transition flex items-center gap-1">
+<span>🎸</span> Âm nhạc
+            </button>
+<button class="px-3 py-1.5 rounded-full bg-fb-bg hover:bg-fb-blue-subtle hover:text-fb-blue text-fb-text text-[13px] font-medium transition flex items-center gap-1">
+<span>🎨</span> Workshop &amp; Vẽ
+            </button>
+</div>
+</div>
+<!-- Hot Areas List -->
+<div class="bg-fb-card rounded-xl p-4 border border-fb-border shadow-sm flex flex-col gap-2">
+<span class="text-[13px] font-bold text-fb-subtext uppercase tracking-wider">Khu vực sôi động gần bạn</span>
+<div class="flex flex-col gap-1 mt-1">
+<a class="flex items-center justify-between p-2 rounded-lg hover:bg-fb-bg transition" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-fb-blue text-[18px]">location_on</span>
+<span class="text-[13px] font-medium text-fb-text">Quận Hoàn Kiếm (Phố Cổ)</span>
+</div>
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-fb-green-light text-fb-green">14 kèo</span>
+</a>
+<a class="flex items-center justify-between p-2 rounded-lg hover:bg-fb-bg transition" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-fb-blue text-[18px]">location_on</span>
+<span class="text-[13px] font-medium text-fb-text">Quận Cầu Giấy (Duy Tân)</span>
+</div>
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-fb-green-light text-fb-green">19 kèo</span>
+</a>
+<a class="flex items-center justify-between p-2 rounded-lg hover:bg-fb-bg transition" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-fb-blue text-[18px]">location_on</span>
+<span class="text-[13px] font-medium text-fb-text">Quận Hai Bà Trưng</span>
+</div>
+<span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-fb-bg text-fb-subtext">9 kèo</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- ========================================================= -->
+<!-- 2. MIDDLE FEED: 680px - 720px max-width                  -->
+<!-- ========================================================= -->
+<div class="flex-1 max-w-[700px] flex flex-col gap-4 min-w-0">
+<!-- 2.1 FACEBOOK STYLE COMPOSER: 'TẠO KÈO NHANH TRONG 30 GIÂY' -->
+<div class="bg-fb-card rounded-xl p-3.5 border border-fb-border shadow-sm flex flex-col gap-3">
+<div class="flex items-center gap-2.5">
+<img alt="@userName avatar" class="w-10 h-10 rounded-full object-cover ring-1 ring-fb-border shrink-0" src="@defaultAvatarUrl" onerror="this.src='/images/man.png';"/>
+<button class="flex-1 text-left bg-fb-bg hover:bg-[#E4E6EB] px-4 py-2.5 rounded-full text-fb-subtext text-[14px] transition cursor-pointer flex items-center justify-between" type="button">
+<span>Bạn đang muốn tụ tập sở thích gì ngay lúc này?</span>
+<span class="material-symbols-outlined text-fb-blue text-[20px]">bolt</span>
+</button>
+</div>
+<div class="border-t border-fb-border pt-2 grid grid-cols-3 gap-1">
+<button class="flex items-center justify-center gap-2 py-2 px-1 rounded-lg hover:bg-fb-hover transition text-fb-subtext font-medium text-[13px]" type="button">
+<span class="material-symbols-outlined text-[#FA383E] text-[20px]">location_on</span>
+<span class="truncate">Điểm hẹn gần bạn</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-2 px-1 rounded-lg hover:bg-fb-hover transition text-fb-subtext font-medium text-[13px]" type="button">
+<span class="material-symbols-outlined text-[#F7B125] text-[20px]">timer</span>
+<span class="truncate">Trong 15-30p</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-2 px-1 rounded-lg hover:bg-fb-hover transition text-fb-subtext font-medium text-[13px]" type="button">
+<span class="material-symbols-outlined text-fb-blue text-[20px]">group_add</span>
+<span class="truncate">Cần 2-4 bạn</span>
+</button>
+</div>
+</div>
+<!-- 2.2 RADAR MAP CANVAS WIDGET -->
+<div class="bg-fb-card rounded-xl border border-fb-border shadow-sm overflow-hidden flex flex-col">
+<!-- Widget Header -->
+<div class="px-4 py-3 border-b border-fb-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-fb-green relative">
+<span class="animate-ping absolute inset-0 rounded-full bg-fb-green opacity-75"></span>
+</div>
+<h3 class="font-bold text-[15px] text-fb-text">Bản Đồ Radar Thời Gian Thực</h3>
+<span class="px-2 py-0.5 bg-fb-green-light text-fb-green font-bold text-[11px] rounded-full">12 kèo đang hoạt động</span>
+</div>
+<div class="flex items-center gap-1 text-fb-subtext">
+<button class="p-1.5 hover:bg-fb-hover rounded-full transition" title="Làm mới sóng radar">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+<button class="p-1.5 hover:bg-fb-hover rounded-full transition" title="Toàn màn hình">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Radar Visual Stage -->
+<div class="relative w-full h-[320px] bg-[#0A1128] overflow-hidden select-none">
+<!-- Simulated Map Roads and Grid Lines (Subtle) -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#204080 1px, transparent 1px), linear-gradient(to right, #142144 1px, transparent 1px), linear-gradient(to bottom, #142144 1px, transparent 1px); background-size: 24px 24px, 48px 48px, 48px 48px;"></div>
+<!-- Concentric Sonar Rings -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-28 h-28 rounded-full border border-fb-blue/30 flex items-center justify-center">
+<div class="w-56 h-56 rounded-full border border-fb-blue/25 flex items-center justify-center">
+<div class="w-80 h-80 rounded-full border border-fb-blue/20 flex items-center justify-center">
+<div class="w-[420px] h-[420px] rounded-full border border-fb-blue/15"></div>
+</div>
+</div>
+</div>
+<!-- Crosshair Lines -->
+<div class="absolute w-full h-px bg-fb-blue/20"></div>
+<div class="absolute h-full w-px bg-fb-blue/20"></div>
+<!-- Radar Sweeping Beam -->
+<div class="absolute w-[360px] h-[360px] rounded-full bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(24,119,242,0.28)_360deg)] radar-sweep pointer-events-none"></div>
+</div>
+<!-- Radar Radius Tag -->
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-md text-[11px] font-semibold text-white/90 border border-white/10">
+              Quét trong 2.0 km
             </div>
-        </div>
-
-        <div class="flex-1 relative">
-            <div class="relative z-10 bg-white p-4 rounded-xl shadow-2xl rotate-3">
-                <div class="aspect-video bg-slate-200 rounded-lg flex items-center justify-center text-slate-400">
-                    <span class="material-symbols-outlined text-6xl">image</span>
+<!-- CENTER USER PIN -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center">
+<div class="relative">
+<div class="w-10 h-10 rounded-full ring-4 ring-fb-blue/40 bg-fb-blue p-0.5 shadow-xl">
+<img alt="Bạn" class="w-full h-full rounded-full object-cover" src="@defaultAvatarUrl" onerror="this.src='/images/man.png';"/>
+</div>
+<span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-fb-green border-2 border-white rounded-full"></span>
+</div>
+<span class="bg-white/95 text-fb-text text-[11px] font-bold px-2 py-0.5 rounded shadow mt-1">Vị trí của bạn</span>
+</div>
+<!-- INTERACTIVE PIN 1: Tech & Coffee (Top-Right) -->
+<div class="absolute top-10 right-16 z-20 group cursor-pointer">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute w-8 h-8 rounded-full bg-fb-blue opacity-70"></span>
+<div class="w-8 h-8 rounded-full bg-fb-blue text-white flex items-center justify-center shadow-lg ring-2 ring-white text-[14px]">
+                  ☕
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-24 px-8 bg-surface-container-low">
-    <div class="max-w-7xl mx-auto">
-        <h2 class="font-headline text-3xl font-extrabold text-on-surface mb-12">Explore Categories</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            @{
-                var categories = new[] {
-                        new { Name = "Design", Icon = "brush", Color = "bg-orange-100 text-orange-600" },
-                        new { Name = "Development", Icon = "code", Color = "bg-blue-100 text-blue-600" },
-                        new { Name = "Marketing", Icon = "monitoring", Color = "bg-green-100 text-green-600" },
-                        new { Name = "Business", Icon = "account_balance", Color = "bg-purple-100 text-purple-600" },
-                        new { Name = "Photography", Icon = "photo_camera", Color = "bg-pink-100 text-pink-600" },
-                        new { Name = "Music", Icon = "music_note", Color = "bg-yellow-100 text-yellow-600" }
-                        };
-            }
-
-            @foreach (var cat in categories)
-            {
-                <div class="group bg-white p-6 rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all cursor-pointer">
-                    <div class="w-12 h-12 rounded-xl @cat.Color flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined">@cat.Icon</span>
-                    </div>
-                    <h3 class="font-bold text-on-surface">@cat.Name</h3>
+</div>
+<!-- Pin Tooltip Card -->
+<div class="absolute right-0 bottom-full mb-2 w-56 bg-white rounded-lg p-2 shadow-xl border border-fb-border pointer-events-none">
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-bold text-fb-blue">☕ Cà phê Code &amp; AI</span>
+<span class="text-fb-green font-bold">Cách 350m</span>
+</div>
+<p class="text-[11px] text-fb-subtext truncate mt-0.5">Cộng Cà Phê Tràng Thi • Còn 2 chỗ</p>
+</div>
+</div>
+<!-- INTERACTIVE PIN 2: Board Game (Bottom-Left) -->
+<div class="absolute bottom-12 left-14 z-20 group cursor-pointer">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute w-8 h-8 rounded-full bg-purple-500 opacity-70"></span>
+<div class="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center shadow-lg ring-2 ring-white text-[14px]">
+                  🎲
                 </div>
-            }
-        </div>
-    </div>
-</section>
+</div>
+<div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg p-2 shadow-xl border border-fb-border pointer-events-none">
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-bold text-purple-700">🎲 Kèo Board Game</span>
+<span class="text-fb-green font-bold">Cách 600m</span>
+</div>
+<p class="text-[11px] text-fb-subtext truncate mt-0.5">The Meeple Hub • Cần 3 người</p>
+</div>
+</div>
+<!-- INTERACTIVE PIN 3: Badminton (Top-Left) -->
+<div class="absolute top-14 left-20 z-20 group cursor-pointer">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute w-8 h-8 rounded-full bg-fb-green opacity-70"></span>
+<div class="w-8 h-8 rounded-full bg-fb-green text-white flex items-center justify-center shadow-lg ring-2 ring-white text-[14px]">
+                  🏸
+                </div>
+</div>
+<div class="absolute left-0 bottom-full mb-2 w-56 bg-white rounded-lg p-2 shadow-xl border border-fb-border pointer-events-none">
+<div class="flex items-center justify-between text-[11px]">
+<span class="font-bold text-fb-green">🏸 Cầu Lông Sân số 3</span>
+<span class="text-fb-blue font-bold">Cách 1.2km</span>
+</div>
+<p class="text-[11px] text-fb-subtext truncate mt-0.5">Sân Hồ Đắc Di • Đang diễn ra</p>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================= -->
+<!-- 2.3 MEETUP FEED CARD 1: CÀ PHÊ DEEP WORK & AI CODING       -->
+<!-- ========================================================= -->
+<article class="bg-fb-card rounded-xl border border-fb-border shadow-sm p-4 flex flex-col gap-3">
+<!-- Card Header -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Hoàng Long" class="w-10 h-10 rounded-full object-cover ring-1 ring-fb-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJVtVugGD4Xo_27cKlQrstNJYZzoPV_KhlmOXExRXkOBBSKX6uq-GxNZWj4F4hNd7uhfjfyY0u3ShKx5xZfZFO5ZFDh5NN4JZrX6YKBaeIPP6y4pNogUmqAG_UMC5djRcs7_fp7ZXM1NY-_vBL-rMkVfruV4h7pIgJvcs8W-HFkdPIVyHrzm6vrEybnCirJEAvgNS4aHmDi6ZLMSJ3FPPaRBMy956cz0oTL_o0EvuO9BHRD7gCUwx8"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-fb-green rounded-full border-2 border-white"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-[14px] text-fb-text hover:underline cursor-pointer">Hoàng Long</span>
+<span class="material-symbols-outlined text-fb-blue text-[15px]" title="Xác minh Radar">verified</span>
+<span class="text-fb-subtext text-[13px]">•</span>
+<span class="text-[12px] font-semibold text-amber-600 flex items-center">⭐ 4.9 <span class="text-fb-subtext font-normal ml-0.5">(28 buổi)</span></span>
+</div>
+<div class="flex items-center gap-2 text-fb-subtext text-[12px] mt-0.5">
+<span>Vừa đăng 5 phút trước</span>
+<span>•</span>
+<span class="text-fb-blue font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">near_me</span> Cách bạn 450m
+                  </span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-red-50 text-red-600 font-bold text-[12px] rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Bắt đầu sau 25 phút
+            </span>
+</div>
+<!-- Card Title -->
+<h3 class="font-bold text-[17px] text-fb-text hover:text-fb-blue cursor-pointer transition leading-snug">
+            ☕ Cà phê Deep Work &amp; AI Coding
+          </h3>
+<!-- Card Details -->
+<p class="text-[14px] text-fb-text leading-relaxed">
+            Mình đang ngồi làm việc một mình tại Cộng Tràng Thi, bàn gỗ dài tầng 2 cạnh ban công thoáng đãng. Rủ 2 bạn freelancer / dev hoặc content ghé ngồi chung trao đổi hoặc làm việc yên tĩnh không gian mở nhé!
+          </p>
+<!-- Location Info Box -->
+<div class="bg-fb-bg rounded-lg p-3 flex items-center justify-between border border-fb-border">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-fb-blue text-[22px] shrink-0">storefront</span>
+<div class="min-w-0">
+<p class="text-[13px] font-semibold text-fb-text truncate">Cộng Cà Phê - 48 Tràng Thi, Hoàn Kiếm</p>
+<p class="text-[12px] text-fb-subtext truncate">Bàn dài ban công tầng 2 • Có sẵn ổ cắm điện</p>
+</div>
+</div>
+<a class="text-[12px] font-bold text-fb-blue hover:underline shrink-0 ml-2 flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">directions</span> Chỉ đường
+            </a>
+</div>
+<!-- Participant Status -->
+<div class="flex items-center justify-between py-1 border-b border-fb-border">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-1.5 overflow-hidden">
+<img alt="Attendee" class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj08wETSxwlAWX6jzhDye08XEn_Pn0SFeTBzo_ME126UdaHYpuWZx5mfdCIg6evTpA0NIdFVGb9Jsx8rCd22S5KU1oE02JchdsPO1ReStQMp1DSjNwL6AXyFdY8zOhb2ak423Bkd1TcFFQBwcxN8k0vmfNyxHUkm3uKPfRYQnF62Ks6DqjZOqO54aUBphLP1chXyHDK-gkBeROpCCgIIyTaP_SfvZmItiIK0xB4yN-ssUOGvmogAI4"/>
+<img alt="Attendee" class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRyICggtSMvR3Qi2tE8oFLgfZEsc4qCpiqVKt9XvA_VCnSwPg9Cmh2ncaFh_YvYIEayz-5mO77_6YDLcj1OchKZBpIe5Odq4-xu8f62Wx4SsKt1ejrLjV4FkiJlGFMMUSbTqNz3KPRBX4ComI8CxdugC9MyPdq0M0DvIE1RK3LP0eghYpraaldJlbQTSgiQTZ56QtHPIC3ozzaAubOG25xeX7hB2cemYRcFV1cHqKMqjAKNojFuVQM"/>
+<img alt="Attendee" class="inline-block h-6 w-6 rounded-full ring-2 ring-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnpasc6de5wdWe8NEl6PZnIQ4Ca2uiguUIGQIOmZBSuxoSFi9zWWFtZPrqibvxOnuRP4spkuXyM1nMrAQC-hjUrGaurMwFfcW2KWmRMcOZa9rwPpN0MLTS5TLZwLZwpEEJ4i5syOTu0LyQmTFXdKpBxrUbzmq5pbfz5JCGnGE9IjL-qMYahRbBUEhXS_agFVpud5osVR2Ay_uONAvNVqA10YHDRkGwtZH1IeCd5mWDk5xQw9BehpJ6"/>
+</div>
+<span class="text-[13px] text-fb-subtext">Đã có <span class="font-bold text-fb-text">3/5 bạn</span> tham gia</span>
+</div>
+<span class="text-[12px] font-bold px-2 py-0.5 rounded-full bg-fb-green-light text-fb-green">Còn 2 chỗ trống</span>
+</div>
+<!-- Action Buttons Bar (Standard Facebook Blue CTA) -->
+<div class="grid grid-cols-3 gap-2 pt-0.5">
+<button class="py-2 px-3 bg-fb-blue hover:bg-fb-blue-hover text-white rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span class="truncate">Tham gia kèo ngay</span>
+</button>
+<button class="py-2 px-3 bg-fb-bg hover:bg-fb-hover text-fb-text rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition border border-fb-border">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="truncate">Nhắn tin cho nhóm</span>
+</button>
+<button class="py-2 px-3 bg-fb-bg hover:bg-fb-hover text-fb-text rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition border border-fb-border">
+<span class="material-symbols-outlined text-[18px]">turn_right</span>
+<span class="truncate">Chỉ đường</span>
+</button>
+</div>
+</article>
+<!-- ========================================================= -->
+<!-- 2.4 MEETUP FEED CARD 2: CẦU LÔNG ĐÔI NAM NỮ (HAPPENING NOW)-->
+<!-- ========================================================= -->
+<article class="bg-fb-card rounded-xl border border-fb-border shadow-sm p-4 flex flex-col gap-3">
+<!-- Card Header -->
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Thảo My" class="w-10 h-10 rounded-full object-cover ring-1 ring-fb-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGTln9YD_qQsXfqIdf2znH1PHYr_3DIUmGWnZjZAXBxpJtVRsmaoieAVnLpTgRev9yJQDDxify31L9b-NdInsVkrxU-PaVBRilcEXp2Fv1zKgk9HB_nFvu9Bx0PlOT3CwtqD8ZfQXHXWZz4blp9U4Mwer3SDp1ZWJBzNe413pPS4LiKMvuunsRQNDlf4_TT-76Zb7mKoGQFpuoP8sSyvwsgUfTA1sz3u94HEXrnby0EHZdGTTbEIDn"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-fb-green rounded-full border-2 border-white"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-[14px] text-fb-text hover:underline cursor-pointer">Thảo My &amp; CLB Smash Hub</span>
+<span class="material-symbols-outlined text-fb-blue text-[15px]">verified</span>
+</div>
+<div class="flex items-center gap-2 text-fb-subtext text-[12px] mt-0.5">
+<span>15 phút trước</span>
+<span>•</span>
+<span class="text-fb-blue font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">near_me</span> Cách bạn 1.1km
+                  </span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-fb-green-light text-fb-green font-bold text-[12px] rounded-full flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-fb-green animate-ping"></span> Đang diễn ra ngay
+            </span>
+</div>
+<!-- Card Title -->
+<h3 class="font-bold text-[17px] text-fb-text hover:text-fb-blue cursor-pointer transition leading-snug">
+            🏸 Giao lưu Cầu Lông Đôi Nam Nữ Sân Kỳ Hòa
+          </h3>
+<p class="text-[14px] text-fb-text leading-relaxed">
+            Sân tụi mình đã thuê trọn vẹn 2 tiếng rưỡi (16:00 - 18:30). Hiện đang có 3 người trình độ giao lưu vui vẻ nâng cao sức khỏe. Thiếu đúng 1 bạn vào set đôi nam-nữ. Có sẵn cầu lông chuẩn thi đấu!
+          </p>
+<!-- Photo Image Box -->
+<div class="w-full h-52 rounded-lg overflow-hidden relative border border-fb-border">
+<img alt="Sân Cầu Lông" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjzrzsLJLbRzsB3RNnAZ9Fo8TvCdZSWqVjrUb_05rCttkBBuVsuWdfJC_gGV5DAZI7MERb5H-tm7yZWad8K4nJ4kMOglm4I1-yEzfaFGJBrotsVpoKOJ6vbX0ZxTTCwhmBKw0t8DaM-LvR2cNPxwuQSmlNIWfidF9N0kKxyq-ioOvQVDTit_mZC-jzXBVb2iIGeEeRPpD6JSK5Rs_pu8cKKJ8kl674yUwoffZHsJumuEyUi-2plvsb"/>
+<div class="absolute bottom-2 left-2 bg-black/70 backdrop-blur-sm text-white px-2.5 py-1 rounded text-[12px] flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[16px] text-amber-400">sports_tennis</span>
+<span>Sân Cầu Lông Kỳ Hòa • Sân số 3</span>
+</div>
+<span class="absolute top-2 right-2 bg-red-600 text-white font-bold text-[11px] px-2 py-0.5 rounded-full shadow">
+              Còn 1 slot duy nhất
+            </span>
+</div>
+<!-- Participant Status -->
+<div class="flex items-center justify-between py-1 border-b border-fb-border">
+<div class="flex items-center gap-2">
+<span class="text-[13px] text-fb-subtext">Tiến độ: <span class="font-bold text-fb-text">3/4 tay vợt</span></span>
+<div class="w-24 h-2 bg-fb-border rounded-full overflow-hidden">
+<div class="h-full bg-fb-green w-3/4 rounded-full"></div>
+</div>
+</div>
+<span class="text-[12px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">Cần 1 bạn chốt nhanh</span>
+</div>
+<!-- Action Buttons Bar -->
+<div class="grid grid-cols-3 gap-2 pt-0.5">
+<button class="py-2 px-3 bg-fb-blue hover:bg-fb-blue-hover text-white rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition shadow-sm">
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+<span class="truncate">Đăng ký slot cuối</span>
+</button>
+<button class="py-2 px-3 bg-fb-bg hover:bg-fb-hover text-fb-text rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition border border-fb-border">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="truncate">Nhắn tin cho nhóm</span>
+</button>
+<button class="py-2 px-3 bg-fb-bg hover:bg-fb-hover text-fb-text rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition border border-fb-border">
+<span class="material-symbols-outlined text-[18px]">turn_right</span>
+<span class="truncate">Chỉ đường</span>
+</button>
+</div>
+</article>
+<!-- ========================================================= -->
+<!-- 2.5 MEETUP FEED CARD 3: ACOUSTIC LIVE NIGHT               -->
+<!-- ========================================================= -->
+<article class="bg-fb-card rounded-xl border border-fb-border shadow-sm p-4 flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Tuấn Kiệt" class="w-10 h-10 rounded-full object-cover ring-1 ring-fb-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoxE0izQAbCatSHoOPdnn96kFbfa97jpSg4WwaVc4kpptFffuMmWIgASuP6IaPkSELtnKfnJJIB_4afDLr_QRAKDg27k8lRg0DO91TQAF4e_n9u-PWJMiBAiaqHi1L1jwy5QYxaBBn_qEFqMC91rMT6SyPSa-yI6hiYE8PFsgt4YF7FpJCzVJjHlkgpsVQ_8A9-Ml-xdr9EVfDx2-LRG_LQwTFo1GlZou0a6i_zbD_RvxI2tCxVyWD"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-fb-green rounded-full border-2 border-white"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-[14px] text-fb-text hover:underline cursor-pointer">Tuấn Kiệt &amp; Nhóm Guitar Mộc</span>
+<span class="text-fb-subtext text-[13px]">•</span>
+<span class="text-[12px] font-semibold text-fb-blue">Host quen thuộc</span>
+</div>
+<div class="flex items-center gap-2 text-fb-subtext text-[12px] mt-0.5">
+<span>35 phút trước</span>
+<span>•</span>
+<span class="text-fb-blue font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">near_me</span> Cách bạn 900m
+                  </span>
+</div>
+</div>
+</div>
+<span class="px-2.5 py-1 bg-purple-50 text-purple-700 font-bold text-[12px] rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">nightlife</span> Tối nay 19:30
+            </span>
+</div>
+<h3 class="font-bold text-[17px] text-fb-text hover:text-fb-blue cursor-pointer transition leading-snug">
+            🎸 Giao lưu Acoustic &amp; Guitar mộc vỉa hè Hồ Gươm
+          </h3>
+<p class="text-[14px] text-fb-text leading-relaxed">
+            Thời tiết tối nay se se lạnh rất hợp tụ tập đàn hát mộc quanh tượng đài Lý Thái Tổ. Tụi mình mang theo 2 cây guitar acoustic và trống cajon. Hoan nghênh các bạn ghé chơi ngẫu hứng hoặc chỉ đơn giản ngồi nghe gió!
+          </p>
+<div class="bg-fb-bg rounded-lg p-3 flex items-center justify-between border border-fb-border">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-purple-600 text-[22px] shrink-0">park</span>
+<div class="min-w-0">
+<p class="text-[13px] font-semibold text-fb-text truncate">Vườn hoa Lý Thái Tổ - Đinh Tiên Hoàng</p>
+<p class="text-[12px] text-fb-subtext truncate">Khu vực ghế đá nhìn ra bờ hồ</p>
+</div>
+</div>
+<a class="text-[12px] font-bold text-fb-blue hover:underline shrink-0 ml-2 flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">directions</span> Chỉ đường
+            </a>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-fb-border text-fb-subtext text-[13px]">
+<span>8 bạn đã bấm tham gia • Tự do không giới hạn số lượng</span>
+<span class="text-fb-blue font-bold">Miễn phí 100%</span>
+</div>
+<div class="grid grid-cols-3 gap-2 pt-0.5">
+<button class="py-2 px-3 bg-fb-blue hover:bg-fb-blue-hover text-white rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition shadow-sm">
+<span class="material-symbols-outlined text-[18px]">event_available</span>
+<span class="truncate">Sẽ tham gia</span>
+</button>
+<button class="py-2 px-3 bg-fb-bg hover:bg-fb-hover text-fb-text rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition border border-fb-border">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="truncate">Nhắn tin cho nhóm</span>
+</button>
+<button class="py-2 px-3 bg-fb-bg hover:bg-fb-hover text-fb-text rounded-lg font-semibold text-[13px] flex items-center justify-center gap-1.5 transition border border-fb-border">
+<span class="material-symbols-outlined text-[18px]">turn_right</span>
+<span class="truncate">Chỉ đường</span>
+</button>
+</div>
+</article>
+</div>
+<!-- ========================================================= -->
+<!-- 3. RIGHT SIDEBAR: 340px Sticky                           -->
+<!-- ========================================================= -->
+<aside class="hidden lg:flex flex-col gap-3.5 w-[340px] shrink-0 sticky top-[70px] max-h-[calc(100vh-80px)] overflow-y-auto custom-scrollbar pl-1">
+<!-- 3.1 BẠN BÈ LÂN CẬN ĐANG ONLINE -->
+<div class="bg-fb-card rounded-xl p-4 border border-fb-border shadow-sm flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-fb-green text-[20px]">person_pin_circle</span>
+<h3 class="font-bold text-[14px] text-fb-text">Bạn bè lân cận đang online</h3>
+</div>
+<span class="text-[11px] font-bold px-2 py-0.5 bg-fb-green-light text-fb-green rounded-full">4 đang bật</span>
+</div>
+<div class="flex flex-col gap-1 mt-1">
+<!-- Friend 1 -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-fb-bg transition cursor-pointer group">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="relative shrink-0">
+<img alt="Minh Anh" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP_x5cxQv1HGxuucdvEN8E3nvOopiJCPWvnyK6sW-PUfDJO_ICZI8aewX4_vUaV8_twUHHN5VBNzqm-ps4z8mwm62hvvYBzY2ImlsYf020d51jZ4dItCkM6_hXiNx9sBRfC8jTIqh23WPIFAG05FLiVZzt3Mghh2MNDcR-6afTBrw_rHpV-mmsrzwB4UUZes_WPMn1O90OL99MZR2FGwiPNSIjln2SW2Rg8XY7LK4paXe0G-oXabjo"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-fb-green border-2 border-white rounded-full"></span>
+</div>
+<div class="min-w-0">
+<p class="text-[13px] font-semibold text-fb-text group-hover:text-fb-blue transition truncate">Minh Anh</p>
+<p class="text-[11px] text-fb-subtext truncate">Cà phê Press Club • Cách 600m</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-[#E4E6EB] flex items-center justify-center text-fb-blue" title="Vẫy tay rủ kèo">
+<span class="material-symbols-outlined text-[18px]">waving_hand</span>
+</button>
+</div>
+<!-- Friend 2 -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-fb-bg transition cursor-pointer group">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="relative shrink-0">
+<img alt="Đức Huy" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFTqyLhzlzemDFNNKhpNWpyD16l0xxjQyZxOk_x5GVihTDJTl09HmW3G3S5uKAdk1iTkUsaO8WixopUnVJDMPxq-MwA91VlCkuJkT3OswQj3RDM0PFQIaM0jo2l5g5DBP_PrIufwpuVPUd2gH0hTxUDau1j5rJh6ccF36Jv2h40ueVjEhgfTKLHlJIGv8l500LBNYX5ykfuiPmHjU18oH-bpTUmGhzaKM1FPPmt_d5MwhSke4OMji3"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-fb-green border-2 border-white rounded-full"></span>
+</div>
+<div class="min-w-0">
+<p class="text-[13px] font-semibold text-fb-text group-hover:text-fb-blue transition truncate">Đức Huy</p>
+<p class="text-[11px] text-fb-subtext truncate">Muốn chạy bộ hồ • Cách 1.4km</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-[#E4E6EB] flex items-center justify-center text-fb-blue" title="Rủ chạy bộ">
+<span class="material-symbols-outlined text-[18px]">directions_run</span>
+</button>
+</div>
+<!-- Friend 3 -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-fb-bg transition cursor-pointer group">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="relative shrink-0">
+<img alt="Thanh Hằng" class="w-9 h-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqA7i0Hb8ODMfvhaDVlkNjCUwcRDdSR4CRQnJ16DpTs4dHeqkRfT5q_1fswrFlBqWQKdp25hndkihxQzfiBlfo19uEr92mK7zUsjBCL_hBADh4bquA-EUdYT5A5ayp_8AYhE9_6B8HK0PRRkJCzdVslULppy3NsFfuJRaoNDLwZPjcxy_x2Lvl-1Eo9cFYac-NUHQicMelON0cAlv-PrUeFx5DGFPacs8XoHRB9XwMeipYAlnGaJrw"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-fb-green border-2 border-white rounded-full"></span>
+</div>
+<div class="min-w-0">
+<p class="text-[13px] font-semibold text-fb-text group-hover:text-fb-blue transition truncate">Thanh Hằng</p>
+<p class="text-[11px] text-fb-subtext truncate">Đọc sách Phố Sách • Cách 850m</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-[#E4E6EB] flex items-center justify-center text-fb-blue" title="Nhắn tin">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 3.2 KÈO SẮP BẮT ĐẦU TRONG 1 GIỜ -->
+<div class="bg-fb-card rounded-xl p-4 border border-fb-border shadow-sm flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-[14px] text-fb-text">Kèo sắp bắt đầu (trong 1 giờ)</h3>
+<span class="text-[12px] text-fb-blue hover:underline cursor-pointer">Xem tất cả</span>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<!-- Imminent Meetup 1 -->
+<div class="p-2.5 rounded-lg bg-fb-bg hover:bg-fb-hover transition flex items-start gap-3 cursor-pointer">
+<div class="w-11 h-11 rounded-lg bg-red-100 text-red-700 flex flex-col items-center justify-center shrink-0">
+<span class="text-[12px] font-bold leading-none">17:00</span>
+<span class="text-[10px] uppercase font-semibold mt-0.5">35 phút</span>
+</div>
+<div class="min-w-0 flex-1">
+<h4 class="text-[13px] font-semibold text-fb-text truncate">Tập Street Workout công viên</h4>
+<p class="text-[11px] text-fb-subtext truncate">Công viên Thống Nhất • 4 người đi</p>
+<span class="inline-block mt-1 text-[11px] font-bold text-fb-blue">Đã có 4/6 bạn</span>
+</div>
+</div>
+<!-- Imminent Meetup 2 -->
+<div class="p-2.5 rounded-lg bg-fb-bg hover:bg-fb-hover transition flex items-start gap-3 cursor-pointer">
+<div class="w-11 h-11 rounded-lg bg-fb-blue-subtle text-fb-blue flex flex-col items-center justify-center shrink-0">
+<span class="text-[12px] font-bold leading-none">17:30</span>
+<span class="text-[10px] uppercase font-semibold mt-0.5">1 tiếng</span>
+</div>
+<div class="min-w-0 flex-1">
+<h4 class="text-[13px] font-semibold text-fb-text truncate">Hội bơi lội giải tỏa căng thẳng</h4>
+<p class="text-[11px] text-fb-subtext truncate">Bể bơi Tăng Bạt Hổ • Cần 2 bạn</p>
+<span class="inline-block mt-1 text-[11px] font-bold text-fb-green">Còn 2 chỗ trống</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3.3 ĐỐI TÁC ĐỊA ĐIỂM RADAR ƯU ĐÃI -->
+<div class="bg-fb-card rounded-xl p-4 border border-fb-border shadow-sm flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-[14px] text-fb-text">Đối tác địa điểm Radar ưu đãi</h3>
+<span class="text-[11px] font-bold text-fb-subtext uppercase">Tài trợ</span>
+</div>
+<div class="flex flex-col gap-2.5 mt-1">
+<!-- Venue 1 -->
+<div class="p-3 rounded-lg border border-fb-border hover:border-fb-blue/50 transition flex flex-col gap-1.5 bg-white">
+<div class="flex items-center justify-between">
+<h4 class="text-[13px] font-bold text-fb-text truncate">The Meeple Boardgame Hub</h4>
+<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-red-100 text-red-600">-15% Bill</span>
+</div>
+<p class="text-[12px] text-fb-subtext leading-relaxed">
+                Giảm ngay 15% tổng hóa đơn cho nhóm từ 4 người check-in tạo kèo trực tiếp qua Radar.
+              </p>
+<div class="flex items-center justify-between text-[11px] pt-1 border-t border-fb-border mt-1">
+<span class="text-fb-subtext">Cách bạn 850m • Ngõ Huyện</span>
+<button class="text-fb-blue font-bold hover:underline">Đặt bàn ngay</button>
+</div>
+</div>
+<!-- Venue 2 -->
+<div class="p-3 rounded-lg border border-fb-border hover:border-fb-blue/50 transition flex flex-col gap-1.5 bg-white">
+<div class="flex items-center justify-between">
+<h4 class="text-[13px] font-bold text-fb-text truncate">Toong Coworking Tràng Thi</h4>
+<span class="text-[11px] font-bold px-2 py-0.5 rounded bg-fb-green-light text-fb-green">Free Drink</span>
+</div>
+<p class="text-[12px] text-fb-subtext leading-relaxed">
+                Tặng cà phê pha máy không giới hạn cho nhóm làm việc Deep Work từ 3 thành viên.
+              </p>
+<div class="flex items-center justify-between text-[11px] pt-1 border-t border-fb-border mt-1">
+<span class="text-fb-subtext">Cách bạn 400m • Tràng Thi</span>
+<button class="text-fb-blue font-bold hover:underline">Xem không gian</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="px-2 pt-1 text-[11px] text-fb-subtext flex flex-wrap gap-x-2 gap-y-1">
+<a class="hover:underline" href="#">Quy tắc an toàn</a>
+<span>•</span>
+<a class="hover:underline" href="#">Quyền riêng tư Radar</a>
+<span>•</span>
+<a class="hover:underline" href="#">Điều khoản</a>
+<span>•</span>
+<a class="hover:underline" href="#">Quảng cáo điểm hẹn</a>
+<p class="w-full text-fb-subtext/80 mt-1">Radar Connect © 2024 - Real-time Social Meetups</p>
+</div>
+</aside>
+</div>
+</main>
