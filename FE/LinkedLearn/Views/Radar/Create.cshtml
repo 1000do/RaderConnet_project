@@ -1,0 +1,105 @@
+@model LinkedLearn.Models.RadarVM.CreateActivityViewModel
+@{
+    ViewData["Title"] = "Tạo Kèo Mới";
+}
+
+<div class="max-w-2xl mx-auto bg-fb-card rounded-lg shadow-sm border border-fb-border p-6 mt-6">
+    <h2 class="text-2xl font-bold text-fb-text mb-6">Tạo Kèo Mới</h2>
+    
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-red-500 mb-4"></div>
+
+        <div class="mb-4">
+            <label asp-for="Title" class="block text-sm font-medium text-fb-text mb-1">Tiêu đề (Làm gì?)</label>
+            <input asp-for="Title" class="w-full bg-fb-bg text-fb-text rounded-md border-fb-border shadow-sm focus:border-fb-blue focus:ring-fb-blue" placeholder="VD: Uống cafe sáng chém gió startup" />
+            <span asp-validation-for="Title" class="text-red-500 text-sm"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="Description" class="block text-sm font-medium text-fb-text mb-1">Mô tả chi tiết</label>
+            <textarea asp-for="Description" rows="3" class="w-full bg-fb-bg text-fb-text rounded-md border-fb-border shadow-sm focus:border-fb-blue focus:ring-fb-blue"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+                <label asp-for="CategoryId" class="block text-sm font-medium text-fb-text mb-1">Danh mục</label>
+                <select asp-for="CategoryId" class="w-full bg-fb-bg text-fb-text rounded-md border-fb-border shadow-sm focus:border-fb-blue focus:ring-fb-blue">
+                    <option value="1">☕ Cà phê</option>
+                    <option value="2">🏸 Cầu lông</option>
+                    <option value="3">🎲 Boardgame</option>
+                    <option value="4">💻 Làm việc/Học tập</option>
+                </select>
+            </div>
+            <div>
+                <label asp-for="MaxParticipants" class="block text-sm font-medium text-fb-text mb-1">Số lượng người cần</label>
+                <input asp-for="MaxParticipants" type="number" min="1" max="100" class="w-full bg-fb-bg text-fb-text rounded-md border-fb-border shadow-sm focus:border-fb-blue focus:ring-fb-blue" value="2" />
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="ExpiresAt" class="block text-sm font-medium text-fb-text mb-1">Thời hạn Kèo (Giờ kết thúc)</label>
+            <input asp-for="ExpiresAt" type="datetime-local" class="w-full bg-fb-bg text-fb-text rounded-md border-fb-border shadow-sm focus:border-fb-blue focus:ring-fb-blue" required />
+        </div>
+
+        <!-- TỌA ĐỘ GPS ẨN -->
+        <input type="hidden" asp-for="Latitude" id="Latitude" />
+        <input type="hidden" asp-for="Longitude" id="Longitude" />
+        
+        <div id="location-status" class="mb-4 p-3 rounded-md bg-yellow-100 text-yellow-800 text-sm">
+            ⏳ Đang lấy tọa độ GPS của bạn... Vui lòng cho phép truy cập vị trí.
+        </div>
+
+        <button type="submit" id="btnSubmit" disabled class="w-full bg-fb-blue text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600 disabled:opacity-50">
+            Tạo Kèo
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Tự động set thời gian mặc định là +2 tiếng
+        const now = new Date();
+        now.setHours(now.getHours() + 2);
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('ExpiresAt').value = now.toISOString().slice(0,16);
+
+        // Lấy tọa độ GPS
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                document.getElementById('Latitude').value = position.coords.latitude;
+                document.getElementById('Longitude').value = position.coords.longitude;
+                
+                const statusDiv = document.getElementById('location-status');
+                statusDiv.className = "mb-4 p-3 rounded-md bg-green-100 text-green-800 text-sm flex flex-col gap-1";
+                statusDiv.innerHTML = `<span>⏳ Đang dịch tọa độ sang địa chỉ thực tế...</span>`;
+                
+                // Gọi Backend (FE Server) để dịch tọa độ thành địa chỉ
+                // Backend có thể gọi ra internet, còn trình duyệt thì không (do DNS nội bộ)
+                fetch(`/Radar/GetAddress?lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.address) {
+                            statusDiv.innerHTML = `
+                                <span class="font-bold">✅ Đã chốt vị trí của bạn:</span>
+                                <span>📍 ${data.address}</span>
+                            `;
+                        } else {
+                            statusDiv.innerHTML = `✅ Đã chốt tọa độ (${position.coords.latitude.toFixed(5)}, ${position.coords.longitude.toFixed(5)}). Bạn có thể tạo kèo!`;
+                        }
+                        document.getElementById('btnSubmit').disabled = false;
+                    })
+                    .catch(err => {
+                        statusDiv.innerHTML = `✅ Đã chốt tọa độ. Bạn có thể tạo kèo!`;
+                        document.getElementById('btnSubmit').disabled = false;
+                    });
+                
+            }, function (error) {
+                const statusDiv = document.getElementById('location-status');
+                statusDiv.className = "mb-4 p-3 rounded-md bg-red-100 text-red-800 text-sm";
+                statusDiv.innerHTML = "❌ Lỗi: Không thể lấy vị trí. Bạn phải bật GPS thì mới tạo kèo được!";
+            });
+        } else {
+            alert("Trình duyệt của bạn không hỗ trợ Geolocation.");
+        }
+    </script>
+}

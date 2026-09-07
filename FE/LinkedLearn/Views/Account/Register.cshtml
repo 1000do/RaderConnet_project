@@ -1,75 +1,164 @@
-﻿@using LinkedLearn.Models.UserVM
+@using LinkedLearn.Models.UserVM
 @model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Đăng ký Radar";
+    Layout = null;
 }
 
-<main class="flex-grow flex items-center justify-center pt-24 pb-12 px-6 bg-login-gradient relative">
-    <div class="w-full max-w-md bg-white p-10 rounded-2xl shadow-xl border border-slate-100 relative z-10">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-headline font-extrabold text-on-surface mb-2">Create Account</h2>
-            <p class="text-slate-500 text-sm">Join LinkedLearn today and start learning.</p>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Micro-Meetup Radar</title>
 
-            @* HIỂN THỊ LỖI DUY NHẤT TẠI ĐÂY *@
-            @* Khi ModelState có lỗi, khối div này sẽ tự xuất hiện *@
-            <div asp-validation-summary="ModelOnly" class="mt-4 bg-red-50 border border-red-200 text-red-600 px-4 py-2.5 rounded-xl text-sm font-medium list-none flex items-center justify-center">
-                <span class="material-symbols-outlined text-sm mr-2">error</span>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        "brand-primary": "#6366F1", // Indigo 500
+                        "brand-secondary": "#ec4899", // Pink 500
+                        "brand-accent": "#14b8a6", // Teal 500
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col relative overflow-hidden">
+
+    <!-- Animated Background Blobs -->
+    <div class="absolute top-0 -left-4 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+    <div class="absolute top-0 -right-4 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-4000"></div>
+
+    <main class="flex-1 flex items-center justify-center p-4 py-12 relative z-10">
+        
+        <div class="w-full max-w-md">
+            
+            <!-- Logo Header -->
+            <div class="text-center mb-8">
+                <a href="/" class="inline-flex items-center justify-center gap-3 group">
+                    <div class="p-2 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-xl shadow-md group-hover:shadow-lg transition-all">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
+                    </div>
+                    <span class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Radar</span>
+                </a>
+            </div>
+
+            <!-- Sign Up Card (Glassmorphism) -->
+            <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 p-8">
+                
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-slate-800">Tạo tài khoản mới</h2>
+                    <p class="text-slate-500 text-sm mt-1">Tham gia Radar để kết nối với mọi người ngay</p>
+                </div>
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="bg-red-50/80 backdrop-blur-sm border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm text-center mb-6 font-medium flex flex-col items-center justify-center gap-2">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>Có lỗi xảy ra, vui lòng kiểm tra lại thông tin.</span>
+                        </div>
+                        <div class="text-xs mt-1" asp-validation-summary="ModelOnly"></div>
+                    </div>
+                }
+
+                <form asp-controller="Account" asp-action="Register" method="post" class="space-y-4">
+                    
+                    <!-- Username Input -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Tên người dùng</label>
+                        <input asp-for="Username" class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-800 outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-slate-400 font-medium" 
+                               placeholder="johndoe" type="text" required />
+                        <span asp-validation-for="Username" class="text-xs text-red-500 font-medium ml-1 mt-1 block"></span>
+                    </div>
+
+                    <!-- Email Input -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Email hoặc Số điện thoại</label>
+                        <input asp-for="Email" class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-800 outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-slate-400 font-medium" 
+                               placeholder="name@example.com" type="text" required />
+                        <span asp-validation-for="Email" class="text-xs text-red-500 font-medium ml-1 mt-1 block"></span>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Mật khẩu</label>
+                        <input asp-for="Password" class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-800 outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-slate-400 font-medium" 
+                               placeholder="••••••••" type="password" required />
+                        <span asp-validation-for="Password" class="text-xs text-red-500 font-medium ml-1 mt-1 block"></span>
+                    </div>
+
+                    <!-- Confirm Password Input -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5 ml-1">Xác nhận mật khẩu</label>
+                        <input asp-for="ConfirmPassword" class="w-full px-4 py-3 bg-white/50 border border-slate-200 rounded-xl text-slate-800 outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-slate-400 font-medium" 
+                               placeholder="••••••••" type="password" required />
+                        <span asp-validation-for="ConfirmPassword" class="text-xs text-red-500 font-medium ml-1 mt-1 block"></span>
+                    </div>
+
+                    <!-- Gender Selection -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2 ml-1">Giới tính</label>
+                        <div class="flex gap-4">
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" asp-for="Gender" value="male" class="peer sr-only" required />
+                                <div class="px-4 py-3 text-center bg-white/50 border border-slate-200 rounded-xl text-slate-600 font-medium peer-checked:border-brand-primary peer-checked:bg-indigo-50 peer-checked:text-brand-primary transition-all shadow-sm hover:bg-white/80">
+                                    👨 Nam
+                                </div>
+                            </label>
+                            <label class="flex-1 cursor-pointer">
+                                <input type="radio" asp-for="Gender" value="female" class="peer sr-only" required />
+                                <div class="px-4 py-3 text-center bg-white/50 border border-slate-200 rounded-xl text-slate-600 font-medium peer-checked:border-pink-500 peer-checked:bg-pink-50 peer-checked:text-pink-600 transition-all shadow-sm hover:bg-white/80">
+                                    👩 Nữ
+                                </div>
+                            </label>
+                        </div>
+                        <span asp-validation-for="Gender" class="text-xs text-red-500 font-medium ml-1 mt-1 block"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-indigo-600 hover:to-pink-600 text-white font-bold text-lg py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+                            Đăng Ký Ngay
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-8 text-center">
+                    <p class="text-slate-500 font-medium text-sm">
+                        Đã có tài khoản? 
+                        <a href="/Account/Login" class="text-brand-primary font-bold hover:text-indigo-600 hover:underline transition-colors ml-1">
+                            Đăng nhập
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
+    </main>
 
-        <form asp-controller="Account" asp-action="Register" method="post" class="space-y-4">
-
-            @* Username *@
-            <div>
-                <label asp-for="Username" class="block text-sm font-semibold text-on-surface mb-1.5">Username</label>
-                <input asp-for="Username"
-                       class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg focus:bg-white focus:border-primary/30 focus:ring-4 focus:ring-primary/10 outline-none transition-all"
-                       placeholder="johndoe123" />
-                <span asp-validation-for="Username" class="text-[11px] text-red-500 mt-1 block font-medium"></span>
-            </div>
-
-            @* Email *@
-            <div>
-                <label asp-for="Email" class="block text-sm font-semibold text-on-surface mb-1.5">Email address</label>
-                <input asp-for="Email"
-                       class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg focus:bg-white focus:border-primary/30 focus:ring-4 focus:ring-primary/10 outline-none transition-all"
-                       placeholder="name@company.com" />
-                <span asp-validation-for="Email" class="text-[11px] text-red-500 mt-1 block font-medium"></span>
-            </div>
-
-            @* Password *@
-            <div>
-                <label asp-for="Password" class="block text-sm font-semibold text-on-surface mb-1.5">Password</label>
-                <input asp-for="Password"
-                       class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg focus:bg-white focus:border-primary/30 focus:ring-4 focus:ring-primary/10 outline-none transition-all"
-                       placeholder="••••••••"
-                       type="password" />
-                <span asp-validation-for="Password" class="text-[11px] text-red-500 mt-1 block font-medium"></span>
-            </div>
-
-            @* Confirm Password *@
-            <div>
-                <label asp-for="ConfirmPassword" class="block text-sm font-semibold text-on-surface mb-1.5">Confirm Password</label>
-                <input asp-for="ConfirmPassword"
-                       class="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg focus:bg-white focus:border-primary/30 focus:ring-4 focus:ring-primary/10 outline-none transition-all"
-                       placeholder="••••••••"
-                       type="password" />
-                <span asp-validation-for="ConfirmPassword" class="text-[11px] text-red-500 mt-1 block font-medium"></span>
-            </div>
-
-            <button class="w-full py-4 bg-[#43e8d8] text-[#006a62] hover:bg-[#31ddcd] font-headline font-extrabold rounded-lg shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 active:scale-[0.98] transition-all mt-4"
-                    type="submit">
-                Get Started
-            </button>
-
-            <p class="text-center text-sm text-slate-500 mt-6">
-                Already have an account? <a class="text-primary font-bold hover:underline" href="/Account/Login">Login</a>
-            </p>
-        </form>
-    </div>
-</main>
-
-@section Scripts {
-    @* Quan trọng để validate client-side (Username, Password độ dài...) *@
-    <partial name="_ValidationScriptsPartial" />
-}
+    <!-- Validation Scripts -->
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

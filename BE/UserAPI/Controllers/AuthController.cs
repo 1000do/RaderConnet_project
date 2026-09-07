@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using UserAPI.Models.DTO;
@@ -23,7 +23,7 @@ namespace UserAPI.Controllers
         {
             try
             {
-                var result = await _service.Register(request.Username, request.Email, request.Password);
+                var result = await _service.Register(request.Username, request.Email, request.Password, request.Gender ?? "male");
                 return Ok(new { message = result });
             }
             catch (Exception ex)
@@ -41,9 +41,10 @@ namespace UserAPI.Controllers
             return Ok(new { Token = token });
         }
 
-        // --- LẤY THÔNG TIN CÁ NHÂN (ĐỔI TÊN THÀNH GET-PROFILE) ---
+        // --- LẤY THÔNG TIN CÁ NHÂN ---
         [Authorize]
         [HttpGet("get-profile")]
+        [HttpGet("profile")]
         public async Task<IActionResult> GetProfile()
         {
             var userId = GetUserIdFromToken();
@@ -61,7 +62,7 @@ namespace UserAPI.Controllers
                 PhoneNumber = profile.PhoneNumber ?? "",
                 Bio = profile.Bio ?? "",
                 AvatarUrl = profile.AvatarUrl ?? "",
-                profile.IsInstructor,
+
                 PrivacySettings = new
                 {
                     profile.IsPublicEmail,
@@ -89,6 +90,7 @@ namespace UserAPI.Controllers
         // --- UC-10: CẤU HÌNH QUYỀN RIÊNG TƯ ---
         [Authorize]
         [HttpPut("update-privacy")]
+        [HttpPut("privacy")]
         public async Task<IActionResult> UpdatePrivacy([FromBody] UpdatePrivacyRequest request)
         {
             var userId = GetUserIdFromToken();
@@ -98,6 +100,29 @@ namespace UserAPI.Controllers
 
             if (result) return Ok(new { message = "Cập nhật quyền riêng tư thành công!" });
             return BadRequest("Không thể cập nhật quyền riêng tư.");    
+        }
+
+        // --- UC-11: CẬP NHẬT AVATAR (CLOUDINARY) ---
+        [Authorize]
+        [HttpPost("upload-avatar")]
+        public async Task<IActionResult> UploadAvatar(IFormFile file)
+        {
+            var userId = GetUserIdFromToken();
+            if (userId == null) return Unauthorized();
+
+            if (file == null || file.Length == 0)
+                return BadRequest("Vui lòng chọn một file ảnh.");
+
+            try
+            {
+                var avatarUrl = await _service.UploadAvatarAsync(userId.Value, file);
+                if (avatarUrl != null) return Ok(new { message = "Cập nhật Avatar thành công!", url = avatarUrl });
+                return BadRequest("Không thể cập nhật Avatar.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
 
         // --- ĐỔI MẬT KHẨU ---

@@ -1,15 +1,36 @@
 {
   "Routes": [
     {
+      // 1. ĐÍCH ĐẾN (DOWNSTREAM): Nơi Request thực sự được gửi tới
+      // Đây là đường dẫn thật của Microservice (Ví dụ: cục UserAPI xử lý đăng nhập)
       "DownstreamPathTemplate": "/api/auth/{everything}",
       "DownstreamScheme": "http",
+      
+      // 2. DANH SÁCH MÁY CHỦ (INSTANCES): Khai báo các máy chủ đang chạy cục Microservice này
+      // Ví dụ ở đây ta có 2 máy chủ (Container) cùng chạy chung 1 code UserAPI để gánh tải.
       "DownstreamHostAndPorts": [
         {
-          "Host": "user-api",
+          "Host": "user-api",     // Máy chủ 1 (Chính)
           "Port": 8080
+        },
+        {
+          "Host": "user-api-2",   // Máy chủ 2 (Phụ - Giả định thêm vào để chia tải)
+          "Port": 8081
         }
       ],
-      "UpstreamPathTemplate": "/api/users/auth/{everything}",
+
+      // 3. LOAD BALANCER (BỘ CÂN BẰNG TẢI) NẰM CHÍNH LÀ Ở ĐÂY !!!
+      // Khi có 1 triệu người dùng ập vào, Ocelot sẽ tự động chia đều Request ra các máy chủ ở trên.
+      // - "RoundRobin": Xếp hàng lần lượt (Người 1 vào máy 1, Người 2 vào máy 2, Người 3 lại vào máy 1...)
+      // - "LeastConnection": Máy nào đang rảnh, ít người dùng nhất thì ưu tiên đẩy Request vào máy đó.
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+
+      // 4. ĐẦU VÀO (UPSTREAM): Giao diện tiếp khách của Gateway
+      // Frontend/Mobile sẽ KHÔNG gọi trực tiếp vào Downstream, mà gọi vào đường dẫn Upstream ảo này.
+      // Gateway nhận được sẽ tự động "bẻ lái" chui vào máy chủ Downstream.
+      "UpstreamPathTemplate": "/api/User/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete", "Options" ]
     },
     {
@@ -17,15 +38,16 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "user-api",
+          "Host": "radar-api",
           "Port": 8080
         }
       ],
-      "UpstreamPathTemplate": "/api/users/{everything}",
+      "UpstreamPathTemplate": "/api/Radar/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete", "Options" ]
     }
   ],
   "GlobalConfiguration": {
+    // Địa chỉ gốc của anh bảo vệ Gateway
     "BaseUrl": "http://localhost:5000"
   }
 }

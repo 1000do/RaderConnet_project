@@ -1,0 +1,55 @@
+@model IEnumerable<LinkedLearn.Models.RadarVM.ActivityViewModel>
+
+@if (!Model.Any())
+{
+    <div class="col-span-1 md:col-span-2 text-center p-8 bg-fb-card rounded-lg border border-fb-border text-fb-text-light">
+        Không có kèo nào quanh bạn trong bán kính 5km. Tự tạo kèo đi!
+    </div>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <div class="bg-fb-card rounded-lg border border-fb-border p-4 shadow-sm hover:shadow-md transition">
+            <div class="flex justify-between items-start mb-3">
+                <div class="flex items-center gap-3">
+                    <img src="@(string.IsNullOrEmpty(item.HostAvatarUrl) ? "/images/man.png" : item.HostAvatarUrl)" alt="Host" class="w-10 h-10 rounded-full object-cover ring-2 ring-fb-blue/20" onerror="this.src='/images/man.png';" />
+                    <div>
+                        <h4 class="font-bold text-fb-text text-sm">@item.HostName</h4>
+                        <span class="text-xs text-fb-text-light">Cách đây @Math.Round(item.DistanceInMeters ?? 0, 0)m</span>
+                    </div>
+                </div>
+                
+                @if (item.Status == "Full")
+                {
+                    <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">Đã Full</span>
+                }
+                else
+                {
+                    <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Còn slot</span>
+                }
+            </div>
+
+            <h3 class="text-lg font-bold text-fb-text mb-1">@item.Title</h3>
+            <p class="text-sm text-fb-text-light mb-3 line-clamp-2">@item.Description</p>
+            
+            <div class="text-xs text-fb-text-light mb-4 space-y-1">
+                <div>📅 Hết hạn: @item.ExpiresAt.ToString("HH:mm dd/MM")</div>
+                <div>👥 Đã tham gia: @item.CurrentParticipants / @item.MaxParticipants</div>
+            </div>
+
+            @if (item.Status == "Open")
+            {
+                <button onclick="joinActivity('@item.Id')" class="w-full bg-fb-blue/10 text-fb-blue font-semibold py-2 rounded-md hover:bg-fb-blue/20 transition">
+                    Xin tham gia
+                </button>
+            }
+            else
+            {
+                <button disabled class="w-full bg-gray-100 text-gray-400 font-semibold py-2 rounded-md cursor-not-allowed">
+                    Không thể tham gia
+                </button>
+            }
+        </div>
+    }
+}

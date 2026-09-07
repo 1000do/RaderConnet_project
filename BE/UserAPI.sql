@@ -1,4 +1,4 @@
-﻿-- 1. Bảng ROLES
+-- 1. Bảng ROLES
 CREATE TABLE IF NOT EXISTS roles (
     role_id SERIAL PRIMARY KEY,
     role_name TEXT NOT NULL UNIQUE
@@ -21,7 +21,8 @@ CREATE TABLE IF NOT EXISTS profiles (
     phone_number TEXT,
     avatar_url TEXT,
     bio TEXT,
-    is_instructor BOOLEAN DEFAULT FALSE,
+    gender VARCHAR(10),
+  
 
     -- 🔥 CÁC TRƯỜNG PRIVACY MỚI
     is_public_email BOOLEAN DEFAULT FALSE, -- Mặc định ẩn email
@@ -50,6 +51,7 @@ CREATE TABLE IF NOT EXISTS user_roles (
 );
 
 -- 5. INSERT Dữ liệu mẫu ban đầu
-INSERT INTO roles (role_name) VALUES 
-('learner'), ('Instructor'), ('staff'), ('admin')
+INSERT INTO roles (role_id, role_name) VALUES 
+(1, 'user'), 
+(2, 'admin')
 ON CONFLICT (role_name) DO NOTHING;

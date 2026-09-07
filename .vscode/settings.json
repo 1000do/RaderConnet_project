@@ -1,3 +1,10 @@
 {
-    "dotrush.roslyn.projectOrSolutionFiles": []
+    "dotrush.roslyn.projectOrSolutionFiles": [
+        "c:\\Users\\binh4\\source\\repos\\Linked_project\\BE\\BE.sln",
+        "c:\\Users\\binh4\\source\\repos\\Linked_project\\FE\\FE.sln",
+        "c:\\Users\\binh4\\source\\repos\\Linked_project\\GateWay\\GateWay.sln",
+        "c:\\Users\\binh4\\source\\repos\\Linked_project\\GateWay\\GateWay\\GateWay.csproj",
+        "c:\\Users\\binh4\\source\\repos\\Linked_project\\FE\\LinkedLearn\\LinkedLearn.csproj",
+        "c:\\Users\\binh4\\source\\repos\\Linked_project\\BE\\UserAPI\\UserAPI.csproj"
+    ]
 }

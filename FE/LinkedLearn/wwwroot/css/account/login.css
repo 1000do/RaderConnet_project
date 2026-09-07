@@ -1,0 +1,8 @@
+/* Styling dành riêng cho trang Đăng nhập (Login) */
+.bg-login-gradient {
+    background: radial-gradient(circle at 50% 0%, rgba(67, 232, 216, 0.15) 0%, rgba(240, 252, 251, 1) 70%);
+}
+
+.login-card-shadow {
+    box-shadow: 0 20px 40px -15px rgba(0, 106, 98, 0.12);
+}

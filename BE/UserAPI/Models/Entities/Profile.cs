@@ -1,4 +1,4 @@
-﻿using UserAPI.Models.Entities;
+using UserAPI.Models.Entities;
 
 public class Profile
 {
@@ -9,7 +9,7 @@ public class Profile
     public string? PhoneNumber { get; set; }  // Dấu ? cho phép null
     public string? AvatarUrl { get; set; }
     public string? Bio { get; set; }
-    public bool IsInstructor { get; set; }  
+    public string? Gender { get; set; }
 
     // 🔥 Các trường cấu hình riêng tư
     public bool IsPublicEmail { get; set; }
